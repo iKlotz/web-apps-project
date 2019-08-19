@@ -44,7 +44,8 @@ Navbar.propTypes = {
 
 Navbar.defaultProps = {
     title: 'Guitar World',
-    icon: "fas fa-skull-crossbones"
+    // icon: "fas fa-skull-crossbones"
+    icon: "fas fa-fire-alt"
 };
 
 

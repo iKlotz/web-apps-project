@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 
-// @route    POST api/contacts
+// @route    POST api/products
 // @desc     Create a contact
 // @access   Private
 router.post(
@@ -69,7 +69,7 @@ router.post(
     }
 );
 
-// @route    PUT api/contacts/:id
+// @route    PUT api/products/:id
 // @desc     Update a contact
 // @access   Private
 router.put('/:id', auth, async (req, res) => {
@@ -112,7 +112,7 @@ router.put('/:id', auth, async (req, res) => {
     }
 });
 
-// // @route    DELETE api/contacts/:id
+// // @route    DELETE api/products/:id
 // // @desc     Delete a contact
 // // @access   Private
 router.delete('/:id', auth, async (req, res) => {
