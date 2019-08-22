@@ -1,27 +1,27 @@
 import React, {useState, useContext, useEffect} from 'react';
 import AlertContext from '../../context/alert/alertContext';
-//import AuthContext from '../../context/auth/authContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = props => {
     const alertContext = useContext(AlertContext);
-    // const authContext = useContext(AuthContext);
-    //
+    const authContext = useContext(AuthContext);
+
     const {setAlert} = alertContext;
-    //
-    // const {register, error, clearErrors, isAuthenticated} = authContext;
-    //
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         props.history.push('/'); //redirects to our home page
-    //     }
-    //
-    //     if (error === 'User already exists') { //better way is to use an ID
-    //         setAlert(error, 'danger');
-    //         clearErrors();
-    //     }
-    //     // eslint-disable-next-line
-    // }, [error, isAuthenticated, props.history]);
-    //
+
+    const {register, error, clearErrors, isAuthenticated} = authContext;
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/'); //redirects to our home page
+        }
+
+        if (error === 'User already exists') { //better way is to use an ID
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+        // eslint-disable-next-line
+    }, [error, isAuthenticated, props.history]);
+
     const [user, setUser] = useState({
         firstname: '',
         lastname: '',
@@ -41,12 +41,12 @@ const Register = props => {
         } else if (password !== password2) {
             setAlert('Passwords do not match', 'danger');
         } else {
-            // register({
-            //     firstname,
-            //     lastname,
-            //     email,
-            //     password
-            // });
+            register({
+                firstname,
+                lastname,
+                email,
+                password
+            });
         }
     };
     // const onSubmit =() => {

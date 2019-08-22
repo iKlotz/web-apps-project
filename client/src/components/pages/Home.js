@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import Explorer from "../../images/explorer.jpg";
 import Telecaster from '../../images/telecaster.jpg';
 import Ibanez from '../../images/ibanez.jpg';
+import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
+    const authContext = useContext(AuthContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+
+        //eslint-disable-next-line
+    }, []);
+    
     return (
         <section className="product_area section-padding">
             <div className="padding_right main_single_product">

@@ -17,7 +17,7 @@ export default (state, action) => {
                 isAuthenticated: true,
                 loading: false,
                 user: action.payload
-            }
+            };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token); //cookie

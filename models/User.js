@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
     remember_me: {
         type: Boolean,
         default: false
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 });
 

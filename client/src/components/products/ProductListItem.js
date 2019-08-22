@@ -7,7 +7,7 @@ const ProductListItem = ({ product }) => {
 
     const { deleteProduct, setCurrent, clearCurrent } = productContext;
 
-    const { id, name, brand, type, price, pic1, pic2, pic3, specs } = product;
+    const { id, model, brand, type, price, pic1, pic2, pic3, specs } = product;
 
     const onDelete = () => {
         deleteProduct(id);
@@ -17,7 +17,7 @@ const ProductListItem = ({ product }) => {
     return (
         <div className='card bg-light'>
             <h3 className="text-primary text-left">
-                {name}{' '}
+                {model}{' '}
             </h3>
             <span style={{float: 'right'}}
                   className={'badge ' + (type === 'Electric Guitar' ?

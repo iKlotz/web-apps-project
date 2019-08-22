@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ProductItem = ({ product }) => {
-    const { id, name, pic1 } = product;
+    const { id, model, pic1 } = product;
 
     return (
         <div className="card text-center">
@@ -12,7 +12,7 @@ const ProductItem = ({ product }) => {
                 // alt="" className="round-img"
                 style={{width: '60px'}}
             />
-            <h2>{name}</h2>
+            <h2>{model}</h2>
 
             <div>
                 <Link to={`/store/product/${id}`} className="btn btn-dark btn-sm my-1">

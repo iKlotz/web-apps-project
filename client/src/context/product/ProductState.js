@@ -19,7 +19,7 @@ const ProductState = props => {
         products: [
             {
                 "id": "1",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -33,7 +33,7 @@ const ProductState = props => {
             },
             {
                 "id": "2",
-                "name": "Stratocaster",
+                "model": "Stratocaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -47,7 +47,7 @@ const ProductState = props => {
             },
             {
                 "id": "3",
-                "name": "Bazinga",
+                "model": "Bazinga",
                 "brand": "Fender",
                 "specs": "Best guitar ever! Hfdsakjnfdas lajbfdlajbfdsf, fdaljfds, fdsaljbfdalsjfbdalkjfb! akjdfadkfb",
                 "price": "3000",
@@ -61,7 +61,7 @@ const ProductState = props => {
             },
             {
                 "id": "4",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -75,7 +75,7 @@ const ProductState = props => {
             },
             {
                 "id": "5",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -89,7 +89,7 @@ const ProductState = props => {
             },
             {
                 "id": "6",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -103,7 +103,7 @@ const ProductState = props => {
             },
             {
                 "id": "7",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -117,7 +117,7 @@ const ProductState = props => {
             },
             {
                 "id": "8",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",
@@ -131,7 +131,7 @@ const ProductState = props => {
             },
             {
                 "id": "9",
-                "name": "Telecaster",
+                "model": "Telecaster",
                 "brand": "Fender",
                 "specs": "Best guitar ever!",
                 "price": "3000",

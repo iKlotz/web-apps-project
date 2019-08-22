@@ -11,7 +11,7 @@ const ProductForm = () => {
             setProduct(current);
         } else {
             setProduct({
-                name: '',
+                model: '',
                 brand: '',
                 price: '',
                 type: 'Electric guitar',
@@ -24,7 +24,7 @@ const ProductForm = () => {
     }, [productContext, current]); //'cause we want it to change only on certain occasions
 
     const [product, setProduct] = useState({ //those are default values
-        name: '',
+        model: '',
         brand: '',
         price: '',
         type: 'Electric guitar',
@@ -34,10 +34,10 @@ const ProductForm = () => {
         specs:''
     });
 
-    const {name, brand, price, type, pic1, pic2, pic3, specs} = product;
+    const {model, brand, price, type, pic1, pic2, pic3, specs} = product;
 
     const onChange = e =>
-        setProduct({...product, [e.target.name]: e.target.value});
+        setProduct({...product, [e.target.model]: e.target.value});
 
     const onSubmit = e => {
         e.preventDefault();
@@ -49,7 +49,7 @@ const ProductForm = () => {
         }
 
         setProduct({
-            name: '',
+            model: '',
             brand: '',
             price: '',
             type: 'Electric guitar',
@@ -68,9 +68,9 @@ const ProductForm = () => {
             <h2 className="primary">{current === null ? 'Add Product' : 'Edit Product' }</h2>
             <input
                 type="text"
-                placeholder="Name"
-                name="name"
-                value={name}
+                placeholder="Model"
+                name="model"
+                value={model}
                 onChange={onChange}
             />
             <input

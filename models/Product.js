@@ -7,7 +7,7 @@ const ProductSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },//refers to users
-    name: {
+    model: {
       type: String,
         required: true
     },

@@ -1,5 +1,4 @@
 import React, {Fragment, useEffect, useContext, useState, useRef} from 'react';
-
 import ProductContext from '../../context/product/productContext';
 import {Link} from "react-router-dom";
 
@@ -24,7 +23,7 @@ const Product = () => {
 
         if (current !== null) {
             setProduct({
-                name: current[0].name,
+                model: current[0].model,
                 brand: current[0].brand,
                 price: current[0].price,
                 type: current[0].type,
@@ -36,7 +35,7 @@ const Product = () => {
         } else {
             //temporary solution
             setProduct({
-                name: 'Telecaster',
+                model: 'Telecaster',
                 brand: 'Fender',
                 price: '3000',
                 type: 'Electric guitar',
@@ -51,7 +50,7 @@ const Product = () => {
 
     console.log(current);
 
-    const {name, brand, specs, price, type, pic1} = product;
+    const {model, brand, specs, price, type, pic1} = product;
 
     if(!product){
         return <h4>loading...</h4>
@@ -70,7 +69,7 @@ const Product = () => {
         <div className="card grid-2">
             <div className="all center">
                 <img src={pic1} className="round-img2" alt="" style={{width: '150px'}}/>
-                <h1>{name}</h1>
+                <h1>{model}</h1>
                 {/*<p>Brand: {brand}</p>*/}
             </div>
             <div>
