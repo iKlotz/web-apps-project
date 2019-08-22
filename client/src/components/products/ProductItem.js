@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ProductItem = ({ product }) => {
-    const { name, pic1 } = product;
+    const { id, name, pic1 } = product;
 
     return (
         <div className="card text-center">
@@ -15,7 +15,7 @@ const ProductItem = ({ product }) => {
             <h2>{name}</h2>
 
             <div>
-                <Link to={'./'} className="btn btn-dark btn-sm my-1">
+                <Link to={`/store/product/${id}`} className="btn btn-dark btn-sm my-1">
                     Details
                 </Link>
             </div>

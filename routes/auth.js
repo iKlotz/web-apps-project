@@ -84,12 +84,5 @@ router.post(
     }
 );
 
-//temporary
-// router.get('/', auth, (req, res) => {
-//     res.send('Get logged in user');
-// });
-
-
-
 
 module.exports = router;

@@ -49,7 +49,7 @@ const ProductState = props => {
                 "id": "3",
                 "name": "Bazinga",
                 "brand": "Fender",
-                "specs": "Best guitar ever!",
+                "specs": "Best guitar ever! Hfdsakjnfdas lajbfdlajbfdsf, fdaljfds, fdsaljbfdalsjfbdalkjfb! akjdfadkfb",
                 "price": "3000",
                 "type": "Electric Guitar",
                 "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",

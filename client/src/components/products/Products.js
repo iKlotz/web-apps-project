@@ -2,6 +2,7 @@ import React, {Fragment, useContext} from 'react';
 import ProductItem from './ProductItem';
 import ProductContext from '../../context/product/productContext';
 
+
 const Products = () => {
     const productContext = useContext(ProductContext); //init context
 

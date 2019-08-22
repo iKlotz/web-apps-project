@@ -33,8 +33,8 @@ router.post(
                 .not()
                 .isEmpty(),
             check('type', 'Type must be provided').isIn([
-                'Jeans',
-                'Guitar'
+                'Acoustic',
+                'Electric Guitar'
             ]) //change is as soon as you decide what you gonna sell
         ]
     ],
@@ -70,7 +70,7 @@ router.post(
 );
 
 // @route    PUT api/products/:id
-// @desc     Update a contact
+// @desc     Update a product
 // @access   Private
 router.put('/:id', auth, async (req, res) => {
     const errors = validationResult(req);

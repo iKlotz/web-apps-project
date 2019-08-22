@@ -18,7 +18,7 @@ export default (state, action) => {
                 ...state, //state is immutable
                 products: action.payload,
                 loading: false
-            }
+            };
         case ADD_PRODUCT:
             return {
                 ...state,
@@ -37,7 +37,7 @@ export default (state, action) => {
                 ...state,
                 //filter takes in a function, we filter OUT given products
                 products: state.products.filter(
-                    contact => contact.id !== action.payload
+                    product => product.id !== action.payload
                 ),
                 loading: false
             };

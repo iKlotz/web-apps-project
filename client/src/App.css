@@ -312,6 +312,10 @@ img {
     border-radius: 50%;
 }
 
+.round-img2 {
+    border-radius: 10%;
+}
+
 
 /* Forms */
 input {
@@ -648,7 +652,7 @@ a:hover{text-decoration:none;}
 [1. body ]
 --------------------------------------------------------------------*/
 body {
-    color: #fff;
+    /*color: #fff;*/
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
     background:#fff;

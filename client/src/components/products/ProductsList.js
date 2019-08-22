@@ -1,7 +1,7 @@
 import React, {Fragment, useContext, useEffect} from 'react';
-// import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 import ProductContext from '../../context/product/productContext';
-// import Spinner from '../layout/Spinner';
+import Spinner from '../layout/Spinner';
 import ProductListItem from './ProductListItem';
 import ProductItem from "./ProductItem";
 
@@ -23,14 +23,14 @@ const ProductsList = () => {
         <Fragment>
             {/*{products !== null && !loading ? (<TransitionGroup>*/}
                 {/*{filtered !== null*/}
-                    {/*? filtered.map(contact => (*/}
+                    {/*? filtered.map(product => (*/}
                         {/*<CSSTransition key={product._id} timeout={100} classNames="item">*/}
-                            {/*<ContactItem contact={contact}/>*/}
+                            {/*<ProductListItem product={product}/>*/}
                         {/*</CSSTransition>*/}
                     {/*))*/}
-                    {/*: products.map(contact => ( //map returns an array*/}
-                        {/*<CSSTransition key={contact._id} timeout={500} classNames="item">*/}
-                            {/*<ContactItem contact={contact}/>*/}
+                    {/*: products.map(product => ( //map returns an array*/}
+                        {/*<CSSTransition key={product._id} timeout={500} classNames="item">*/}
+                            {/*<ProductListItem product={product}/>*/}
                         {/*</CSSTransition>*/}
                     {/*))}*/}
             {/*</TransitionGroup>) : <Spinner/>}*/}
