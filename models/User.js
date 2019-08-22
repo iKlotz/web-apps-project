@@ -22,10 +22,7 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    remember_me: {
-        type: Boolean,
-        default: false
-    },
+
     admin: {
         type: Boolean,
         default: false

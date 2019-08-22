@@ -1,9 +1,10 @@
 import React, {useReducer} from 'react';
-import uuid from 'uuid';
 import ProductContext from './productContext';
 import productReducer from './productReducer';
+import axios from 'axios';
+
 import {
-    GET_PRODUCT,
+    GET_PRODUCTS,
     ADD_PRODUCT,
     DELETE_PRODUCT,
     SET_CURRENT,
@@ -11,158 +12,77 @@ import {
     UPDATE_PRODUCT,
     FILTER_PRODUCTS,
     CLEAR_PRODUCTS,
-    CLEAR_FILTER
+    CLEAR_FILTER, PRODUCT_ERROR
 } from '../types';
 
 const ProductState = props => {
     const initialState = {
-        products: [
-            {
-                "id": "1",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "2",
-                "model": "Stratocaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "3",
-                "model": "Bazinga",
-                "brand": "Fender",
-                "specs": "Best guitar ever! Hfdsakjnfdas lajbfdlajbfdsf, fdaljfds, fdsaljbfdalsjfbdalkjfb! akjdfadkfb",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "4",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "5",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "6",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "7",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "8",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-            {
-                "id": "9",
-                "model": "Telecaster",
-                "brand": "Fender",
-                "specs": "Best guitar ever!",
-                "price": "3000",
-                "type": "Electric Guitar",
-                "pic1": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic2": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "pic3": "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                "user": "5d58228a10ab3d397c7246d5",
-                "date": "2019-08-17T16:22:48.157Z",
-                "__v": 0
-            },
-        ],
+        products: null,
         current: null,
-        filtered: null
+        filtered: null,
+        error: null
     };
 
     const [state, dispatch] = useReducer(productReducer, initialState);
 
-    //Add product
-    const addProduct = product => {
-        product.id = uuid.v4();
-        dispatch({
-            type: ADD_PRODUCT,
-            payload: product
-        });
+    //Get Contacts
+    const getProducts = async () => {
+        try{
+            const res = await axios.get('/api/products');
+
+            dispatch({
+                type: GET_PRODUCTS,
+                payload: res.data
+            }); //all the products in stock
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
     };
 
-    //Delete product
-    const deleteProduct = id => {
-        dispatch({ type: DELETE_PRODUCT, payload: id });
+    //Add product
+    const addProduct = async product => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try{
+            const res = await axios.post('/api/products', product, config);
+
+            dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
     };
+
+
+    //Delete product
+    const deleteProduct = async id => {
+
+        try{
+            await axios.delete(`/api/products/${id}`);
+
+            dispatch({ type: DELETE_PRODUCT, payload: id });
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
+    //Clear products
+    const clearProducts = () => {
+        dispatch({ type: CLEAR_PRODUCTS });
+    };
+
 
     //Set current
     const setCurrent = product => {
@@ -175,8 +95,25 @@ const ProductState = props => {
     };
 
     //Update product
-    const updateProduct = product => {
-        dispatch({ type: UPDATE_PRODUCT, payload: product });
+    const updateProduct = async product => {
+
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try{
+            const res = await axios.put(`/api/products/${product._id}`, product, config);
+
+            dispatch({ type: UPDATE_PRODUCT, payload: res.data });
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
     };
 
     //Filter
@@ -197,13 +134,16 @@ const ProductState = props => {
                 products: state.products,
                 current: state.current,
                 filtered: state.filtered,
+                error: state.error,
                 addProduct,
                 deleteProduct,
                 setCurrent,
                 clearCurrent,
                 updateProduct,
                 filterProducts,
-                clearFilter
+                clearFilter,
+                getProducts,
+                clearProducts
             }}
         >
             {props.children}

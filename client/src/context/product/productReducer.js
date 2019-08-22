@@ -1,5 +1,5 @@
 import {
-    GET_PRODUCT,
+    GET_PRODUCTS,
     ADD_PRODUCT,
     DELETE_PRODUCT,
     SET_CURRENT,
@@ -13,7 +13,7 @@ import {
 
 export default (state, action) => {
     switch (action.type) {
-        case GET_PRODUCT:
+        case GET_PRODUCTS:
             return{
                 ...state, //state is immutable
                 products: action.payload,
@@ -22,14 +22,14 @@ export default (state, action) => {
         case ADD_PRODUCT:
             return {
                 ...state,
-                products: [...state.products, action.payload],
+                products: [action.payload, ...state.products],
                 loading: false
             };
         case UPDATE_PRODUCT:
             return{
                 ...state,
                 products: state.products.map(product =>
-                    product.id === action.payload.id ? action.payload : product),
+                    product._id === action.payload._id ? action.payload : product),
                 loading: false
             };
         case DELETE_PRODUCT:
@@ -37,7 +37,7 @@ export default (state, action) => {
                 ...state,
                 //filter takes in a function, we filter OUT given products
                 products: state.products.filter(
-                    product => product.id !== action.payload
+                    product => product._id !== action.payload
                 ),
                 loading: false
             };
@@ -61,9 +61,9 @@ export default (state, action) => {
         case FILTER_PRODUCTS:
             return{
                 ...state,
-                filtered: state.products.filter(contact => {
+                filtered: state.products.filter(product => {
                     const regex = new RegExp(`${action.payload}`, 'gi'); //g-global i-case insensitive
-                    return contact.name.match(regex) || contact.brand.match(regex);
+                    return product.model.match(regex) || product.brand.match(regex);
                 })
             };
         case CLEAR_FILTER:

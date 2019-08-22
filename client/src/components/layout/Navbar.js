@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import SearchBar from '../products/SearchBar';
 import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import ProductContext from '../../context/product/productContext';
+
 
 const Navbar = ({title, icon}) => {
     const authContext = useContext(AuthContext);
+    const productContext = useContext(ProductContext);
 
     const { isAuthenticated, logout, user } = authContext;
+    const {clearProducts} = productContext;
 
     const onLogout = () => {
         logout();
+        clearProducts();
     };
 
 

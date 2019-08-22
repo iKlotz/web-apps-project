@@ -5,13 +5,13 @@ import Ibanez from '../../images/ibanez.jpg';
 import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
-    const authContext = useContext(AuthContext);
-
-    useEffect(() => {
-        authContext.loadUser();
-
-        //eslint-disable-next-line
-    }, []);
+    // const authContext = useContext(AuthContext);
+    //
+    // useEffect(() => {
+    //     authContext.loadUser();
+    //
+    //     //eslint-disable-next-line
+    // }, []);
     
     return (
         <section className="product_area section-padding">

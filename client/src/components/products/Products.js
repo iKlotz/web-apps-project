@@ -10,8 +10,8 @@ const Products = () => {
 
     return (
         <div style={productStyle}>
-            {products.map(product => (
-                <ProductItem key={product.id} product={product}/>))}
+            {/*{products.map(product => (*/}
+                {/*<ProductItem key={product._id} product={product}/>))}*/}
         </div>
     );
 };

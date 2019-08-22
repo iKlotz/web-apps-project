@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//clothes
 const ProductSchema = new Schema({
     user: { //relationship between a product and user
         type: Schema.Types.ObjectId,

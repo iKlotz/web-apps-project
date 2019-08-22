@@ -29,7 +29,7 @@ router.post(
     [
         auth,
         [
-            check('name', 'Name is required')
+            check('model', 'Model is required')
                 .not()
                 .isEmpty(),
             check('type', 'Type must be provided').isIn([
@@ -40,15 +40,16 @@ router.post(
     ],
     async (req, res) => {
         const errors = validationResult(req);
+
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, type, brand, specs, price, pic1, pic2, pic3 } = req.body;
+        const { model, type, brand, specs, price, pic1, pic2, pic3 } = req.body;
 
         try {
             const newProduct = new Product({
-                name,
+                model,
                 brand,
                 specs,
                 price,
@@ -77,11 +78,11 @@ router.put('/:id', auth, async (req, res) => {
     if (!errors.isEmpty())
         return res.status(400).json({ errors: errors.array() });
 
-    const { name, type, brand, specs, price, pic1, pic2, pic3 } = req.body;
+    const { model, type, brand, specs, price, pic1, pic2, pic3 } = req.body;
 
     // Build product object
     const productFields = {};
-    if (name) productFields.name = name;
+    if (model) productFields.name = model;
     if (type) productFields.type = type;
     if (brand) productFields.brand = brand;
     if (specs) productFields.specs = specs;

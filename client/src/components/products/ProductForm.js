@@ -14,7 +14,7 @@ const ProductForm = () => {
                 model: '',
                 brand: '',
                 price: '',
-                type: 'Electric guitar',
+                type: 'Electric Guitar',
                 pic1: '',
                 pic2: '',
                 pic3: '',
@@ -27,7 +27,7 @@ const ProductForm = () => {
         model: '',
         brand: '',
         price: '',
-        type: 'Electric guitar',
+        type: 'Electric Guitar',
         pic1: '',
         pic2: '',
         pic3: '',
@@ -37,13 +37,14 @@ const ProductForm = () => {
     const {model, brand, price, type, pic1, pic2, pic3, specs} = product;
 
     const onChange = e =>
-        setProduct({...product, [e.target.model]: e.target.value});
+        setProduct({...product, [e.target.name]: e.target.value});
 
     const onSubmit = e => {
         e.preventDefault();
         //addProduct(product);
+
         if(current === null){
-            addProduct(product); //contact is our state
+            addProduct(product); //product is our state
         } else {
             updateProduct(product);
         }
@@ -55,7 +56,8 @@ const ProductForm = () => {
             type: 'Electric guitar',
             pic1: '',
             pic2: '',
-            pic3: ''
+            pic3: '',
+            specs: ''
         });
     };
 
