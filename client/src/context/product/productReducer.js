@@ -1,4 +1,5 @@
 import {
+    GET_PRODUCT,
     GET_PRODUCTS,
     ADD_PRODUCT,
     DELETE_PRODUCT,
@@ -13,6 +14,13 @@ import {
 
 export default (state, action) => {
     switch (action.type) {
+        case GET_PRODUCT:
+            return{
+                products: state.products.filter(
+                    product => product._id === action.payload
+                ),
+                loading: false
+            };
         case GET_PRODUCTS:
             return{
                 ...state, //state is immutable

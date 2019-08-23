@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator/check');
+const {check, validationResult} = require('express-validator/check');
 const auth = require('../middleware/auth');
 const Product = require('../models/Product');
 const User = require('../models/User');
@@ -15,10 +15,25 @@ router.get('/', async (req, res) => {
         const products = await Product.find().sort({
             date: -1
         });
+
         res.json(products);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
+    }
+});
+
+
+router.get('/:id', async (req, res) => {
+    try {
+        let product = await Product.findById(req.params.id);
+
+        if (!product) return res.status(404).json({msg: 'Product not found'});
+
+        res.json(product);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
     }
 });
 
@@ -54,10 +69,10 @@ router.post(
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({errors: errors.array()});
         }
 
-        const { model, type, brand, specs, price, pic1, pic2, pic3 } = req.body;
+        const {model, type, brand, specs, price, pic1, pic2, pic3} = req.body;
 
         try {
             const newProduct = new Product({
@@ -88,9 +103,9 @@ router.post(
 router.put('/:id', auth, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({errors: errors.array()});
 
-    const { model, type, brand, specs, price, pic1, pic2, pic3 } = req.body;
+    const {model, type, brand, specs, price, pic1, pic2, pic3} = req.body;
 
     // Build product object
     const productFields = {};
@@ -106,16 +121,16 @@ router.put('/:id', auth, async (req, res) => {
     try {
         let product = await Product.findById(req.params.id);
 
-        if (!product) return res.status(404).json({ msg: 'Product not found' });
+        if (!product) return res.status(404).json({msg: 'Product not found'});
 
         // Make sure user owns product
         if (product.user.toString() !== req.user.id)
-            return res.status(401).json({ msg: 'Not authorized' });
+            return res.status(401).json({msg: 'Not authorized'});
 
         product = await Product.findByIdAndUpdate(
             req.params.id,
-            { $set: productFields },
-            { new: true }
+            {$set: productFields},
+            {new: true}
         );
 
         res.json(product);
@@ -129,25 +144,23 @@ router.put('/:id', auth, async (req, res) => {
 // // @desc     Delete a contact
 // // @access   Private
 router.delete('/:id', auth, async (req, res) => {
-try {
-    let product = await Product.findById(req.params.id);
+    try {
+        let product = await Product.findById(req.params.id);
 
-    if (!product) return res.status(404).json({ msg: 'Product not found' });
+        if (!product) return res.status(404).json({msg: 'Product not found'});
 
-    // Make sure user owns product
-    if (product.user.toString() !== req.user.id)
-        return res.status(401).json({ msg: 'Not authorized' });
+        // Make sure user owns product
+        if (product.user.toString() !== req.user.id)
+            return res.status(401).json({msg: 'Not authorized'});
 
-    await Product.findByIdAndRemove(req.params.id);
+        await Product.findByIdAndRemove(req.params.id);
 
-    res.json({ msg: 'Product removed'});
-} catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error put');
-}
+        res.json({msg: 'Product removed'});
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
 });
-
-
 
 
 module.exports = router;

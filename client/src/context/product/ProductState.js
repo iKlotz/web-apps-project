@@ -4,6 +4,7 @@ import productReducer from './productReducer';
 import axios from 'axios';
 
 import {
+    GET_PRODUCT,
     GET_PRODUCTS,
     ADD_PRODUCT,
     DELETE_PRODUCT,
@@ -34,6 +35,20 @@ const ProductState = props => {
                 type: GET_PRODUCTS,
                 payload: res.data
             }); //all the products in stock
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
+    const getProduct = async id => {
+
+        try{
+            await axios.get(`/api/products/${id}`);
+
+            dispatch({ type: GET_PRODUCT, payload: id });
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -142,6 +157,7 @@ const ProductState = props => {
                 updateProduct,
                 filterProducts,
                 clearFilter,
+                getProduct,
                 getProducts,
                 clearProducts
             }}

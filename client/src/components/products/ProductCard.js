@@ -1,58 +1,17 @@
-import React, {Fragment, useEffect, useContext, useState, useRef} from 'react';
+import React, {Fragment, useContext} from 'react';
 import ProductContext from '../../context/product/productContext';
 import {Link} from "react-router-dom";
 
 
+const ProductCard = ({product}) => {
 
-const Product = () => {
     const productContext = useContext(ProductContext); //init context
 
-    const { products, current, setCurrent, clearCurrent } = productContext; //pulling out products from out context
+    const { current } = productContext; //pulling out products from out context
 
-    const [product, setProduct] = useState('');
+    const {model, brand, specs, price, type, pic1} = current;
 
-    const latestCurrent = useRef(current);
-
-
-    useEffect(() => {
-        const id = window.location.pathname.split("/").pop();
-        const singleProduct = products.filter(product => product.id === id);
-        latestCurrent.current = singleProduct;
-        setCurrent(latestCurrent.current);
-        setProduct(latestCurrent.current);
-
-        if (current !== null) {
-            setProduct({
-                model: current[0].model,
-                brand: current[0].brand,
-                price: current[0].price,
-                type: current[0].type,
-                pic1: current[0].pic1,
-                pic2: current[0].pic2,
-                pic3: current[0].pic3,
-                specs: current[0].specs
-            });
-        } else {
-            //temporary solution
-            setProduct({
-                model: 'Telecaster',
-                brand: 'Fender',
-                price: '3000',
-                type: 'Electric guitar',
-                pic1: "https://d1aeri3ty3izns.cloudfront.net/media/28/280985/1200/preview.jpg",
-                pic2: '',
-                pic3: '',
-                specs: 'Temporary profile'
-            });
-        }
-    }, []);
-
-
-    console.log(current);
-
-    const {model, brand, specs, price, type, pic1} = product;
-
-    if(!product){
+    if(!current){
         return <h4>loading...</h4>
     }
 
@@ -125,4 +84,4 @@ const Product = () => {
     </Fragment>;
 };
 
-export default Product;
+export default ProductCard;
