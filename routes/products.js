@@ -7,10 +7,12 @@ const User = require('../models/User');
 
 // @route    GET api/products
 // @desc     Get all products
-// @access   Private
-router.get('/', auth, async (req, res) => {
+// @access   Public
+router.get('/', async (req, res) => {
     try {
-        const products = await Product.find({ user: req.user.id }).sort({
+        //this line sorts by user ID, add auth before async to use it
+        // const products = await Product.find({ user: req.user.id }).sort({
+        const products = await Product.find().sort({
             date: -1
         });
         res.json(products);
@@ -21,8 +23,18 @@ router.get('/', auth, async (req, res) => {
 });
 
 
+// router.get('/', async (req, res) => {
+//     try {
+//         const products = await Product;
+//         res.json(products);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server Error');
+//     }
+// });
+
 // @route    POST api/products
-// @desc     Create a contact
+// @desc     Add new product
 // @access   Private
 router.post(
     '/',
