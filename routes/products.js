@@ -64,7 +64,7 @@ router.post(
             return res.status(400).json({errors: errors.array()});
         }
 
-        const {model, type, brand, specs, price, pic1, pic2, pic3} = req.body;
+        const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
 
         try {
             const newProduct = new Product({
@@ -76,6 +76,7 @@ router.post(
                 pic1,
                 pic2,
                 pic3,
+                quantity,
                 user: req.user.id
             });
 

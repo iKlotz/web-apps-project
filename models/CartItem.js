@@ -20,7 +20,7 @@ const CartItemSchema = new Schema({
     },
 
     price: {
-        type: String,
+        type: Number,
         required: true
     },
     pic1: {
@@ -33,8 +33,14 @@ const CartItemSchema = new Schema({
     pic3: {
         type: String,
     },
+    quantity: {
+        type: Number
+    },
     specs: {
         type: String
+    },
+    quantity: {
+        type: Number
     },
 
     date: {

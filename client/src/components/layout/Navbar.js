@@ -29,6 +29,9 @@ const Navbar = ({title, icon}) => {
             </li>
             <li>Hello {user && user.firstname}</li>
             <li>
+                <Link to='/shopping-cart'> Cart </Link>
+            </li>
+            <li>
                 <a onClick={onLogout} href="#!">
                     <i className="fas fa-sign-out-alt"/>
                     <span className="hide-sm">Logout</span>

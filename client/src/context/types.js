@@ -1,4 +1,5 @@
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const SET_TOTAL = 'SET_TOTAL';
 export const GET_PRODUCT_AND_SET_CURRENT = 'GET_PRODUCT';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';

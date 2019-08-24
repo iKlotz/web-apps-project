@@ -36,7 +36,9 @@ const ProductSchema = new Schema({
     specs: {
         type: String
     },
-
+    quantity: {
+        type: Number
+    },
     date: {
         type: Date,
         default: Date.now

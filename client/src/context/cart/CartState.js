@@ -1,36 +1,34 @@
 import React, {useReducer} from 'react';
-import ProductContext from './productContext';
-import productReducer from './productReducer';
+import CartContext from './cartContext';
+import cartReducer from './cartReducer';
 import axios from 'axios';
 
 import {
-    GET_PRODUCT_AND_SET_CURRENT,
     GET_PRODUCTS,
     ADD_PRODUCT,
-    ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_PRODUCT,
-    FILTER_PRODUCTS,
     CLEAR_PRODUCTS,
-    CLEAR_FILTER, PRODUCT_ERROR
+    PRODUCT_ERROR,
+    SET_TOTAL
 } from '../types';
 
-const ProductState = props => {
+const CartState = props => {
     const initialState = {
         products: null,
         current: null,
-        filtered: null,
+        cartTotal: 0,
         error: null
     };
 
-    const [state, dispatch] = useReducer(productReducer, initialState);
+    const [state, dispatch] = useReducer(cartReducer, initialState);
 
     //Get Products
     const getProducts = async () => {
         try{
-            const res = await axios.get('/api/products');
+            const res = await axios.get('/api/shopping-cart');
 
             dispatch({
                 type: GET_PRODUCTS,
@@ -44,19 +42,6 @@ const ProductState = props => {
         }
     };
 
-    const getProductAndSetCurrent = async id => {
-
-        try{
-            const res = await axios.get(`/api/products/${id}`);
-
-            dispatch({ type: GET_PRODUCT_AND_SET_CURRENT, payload: res.data });
-        } catch (err) {
-            dispatch({
-                type: PRODUCT_ERROR,
-                payload: err.response.msg
-            });
-        }
-    };
 
     //Add product
     const addProduct = async product => {
@@ -67,7 +52,7 @@ const ProductState = props => {
         };
 
         try{
-            const res = await axios.post('/api/products', product, config);
+            const res = await axios.post('/api/shopping-cart', product, config);
 
             dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
         } catch (err) {
@@ -78,31 +63,11 @@ const ProductState = props => {
         }
     };
 
-    // const addProductToCart = async product => {
-    //     const config = {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     };
-    //
-    //     try{
-    //         const res = await axios.post('/api/shopping-cart', product, config);
-    //
-    //         dispatch({ type: ADD_PRODUCT_TO_CART, payload: res.data }); //new added product to cart
-    //     } catch (err) {
-    //         dispatch({
-    //             type: PRODUCT_ERROR,
-    //             payload: err.response.msg
-    //         });
-    //     }
-    // };
-
-
     //Delete product
     const deleteProduct = async id => {
 
         try{
-            await axios.delete(`/api/products/${id}`);
+            await axios.delete(`/api/shopping-cart/${id}`);
 
             dispatch({ type: DELETE_PRODUCT, payload: id });
         } catch (err) {
@@ -129,6 +94,24 @@ const ProductState = props => {
         dispatch({ type: CLEAR_CURRENT });
     };
 
+    //Set carts total value
+    const setTotal = async () => {
+        //dispatch({ type: SET_TOTAL });
+        try{
+            const res = await axios.get('/api/shopping-cart');
+
+            dispatch({
+                type: SET_TOTAL,
+                payload: res.data
+            }); //all the products in stock
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
     //Update product
     const updateProduct = async product => {
 
@@ -151,44 +134,29 @@ const ProductState = props => {
         }
     };
 
-    //Filter
-    const filterProducts = text => {
-        dispatch({ type: FILTER_PRODUCTS, payload: text });
-    };
-
-    //Clear Filter
-    const clearFilter = () => {
-        dispatch({ type: CLEAR_FILTER }); //set back to default which is null
-    };
-
-
-
     return (
-        <ProductContext.Provider
+        <CartContext.Provider
             value={{
                 products: state.products,
                 current: state.current,
-                filtered: state.filtered,
+                cartTotal: state.cartTotal,
                 error: state.error,
-                cart: state.cart,
                 addProduct,
                 deleteProduct,
                 setCurrent,
                 clearCurrent,
                 updateProduct,
-                filterProducts,
-                clearFilter,
-                getProductAndSetCurrent,
                 getProducts,
-                clearProducts
+                clearProducts,
+                setTotal
             }}
         >
             {props.children}
-        </ProductContext.Provider>
+        </CartContext.Provider>
     );
 };
 
-export default ProductState;
+export default CartState;
 
 
 

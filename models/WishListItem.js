@@ -36,6 +36,10 @@ const WishListItemSchema = new Schema({
     specs: {
         type: String
     },
+    quantity:{
+        type: Number,
+        value: 1
+    },
 
     date: {
         type: Date,
