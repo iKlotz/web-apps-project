@@ -2,6 +2,7 @@ import {
     GET_PRODUCT,
     GET_PRODUCTS,
     ADD_PRODUCT,
+    ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -31,6 +32,12 @@ export default (state, action) => {
             return {
                 ...state,
                 products: [action.payload, ...state.products],
+                loading: false
+            };
+        case ADD_PRODUCT_TO_CART:
+            return {
+                ...state,
+                cart: [action.payload, ...state.cart],
                 loading: false
             };
         case UPDATE_PRODUCT:

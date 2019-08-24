@@ -3,11 +3,11 @@ import ProductContext from '../../context/product/productContext';
 import {Link} from "react-router-dom";
 
 
-const ProductCard = ({product}) => {
+const ProductCard = () => {
 
     const productContext = useContext(ProductContext); //init context
 
-    const { current } = productContext; //pulling out products from out context
+    const { current, addProductToCart, cart } = productContext; //pulling out products from out context
 
     const {model, brand, specs, price, type, pic1} = current;
 
@@ -56,11 +56,11 @@ const ProductCard = ({product}) => {
                         </Fragment>}
                     </li>
 
-                    <a href="#" className="btn btn-dark my-1">
+                    <a href="#" className="btn btn-dark my-1" onClick={() => console.log(current)}>
                         <i className="far fa-heart"></i>
                     </a>
 
-                    <a href="#" className="btn btn-dark my-1">
+                    <a href="#" className="btn btn-dark my-1" onClick={() => addProductToCart(current)}>
                         <i className="fas fa-shopping-cart"></i>
                     </a>
 

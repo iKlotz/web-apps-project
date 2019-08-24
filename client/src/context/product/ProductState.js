@@ -7,6 +7,7 @@ import {
     GET_PRODUCT,
     GET_PRODUCTS,
     ADD_PRODUCT,
+    ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -19,6 +20,7 @@ import {
 const ProductState = props => {
     const initialState = {
         products: null,
+        cart: null,
         current: null,
         filtered: null,
         error: null
@@ -26,7 +28,7 @@ const ProductState = props => {
 
     const [state, dispatch] = useReducer(productReducer, initialState);
 
-    //Get Contacts
+    //Get Products
     const getProducts = async () => {
         try{
             const res = await axios.get('/api/products');
@@ -69,6 +71,25 @@ const ProductState = props => {
             const res = await axios.post('/api/products', product, config);
 
             dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
+    const addProductToCart = async product => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try{
+            const res = await axios.post('/api/shopping-cart', product, config);
+
+            dispatch({ type: ADD_PRODUCT_TO_CART, payload: res.data }); //new added product to cart
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -150,6 +171,7 @@ const ProductState = props => {
                 current: state.current,
                 filtered: state.filtered,
                 error: state.error,
+                cart: state.cart,
                 addProduct,
                 deleteProduct,
                 setCurrent,
@@ -159,7 +181,8 @@ const ProductState = props => {
                 clearFilter,
                 getProduct,
                 getProducts,
-                clearProducts
+                clearProducts,
+                addProductToCart,
             }}
         >
             {props.children}

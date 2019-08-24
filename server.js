@@ -13,6 +13,8 @@ app.use(express.json({ extended: false }));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
+app.use('/api/shopping-cart', require('./routes/shopping-cart'));
+app.use('/api/wish-list', require('./routes/wish-list'));
 
 const PORT = process.env.PORT || 5000;
 
