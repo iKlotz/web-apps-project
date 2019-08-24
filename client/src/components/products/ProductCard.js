@@ -1,19 +1,27 @@
-import React, {Fragment, useContext} from 'react';
+import React, {Fragment, useContext, useEffect} from 'react';
 import ProductContext from '../../context/product/productContext';
 import {Link} from "react-router-dom";
-
+import Spinner from '../../components/layout/Spinner';
 
 const ProductCard = () => {
 
     const productContext = useContext(ProductContext); //init context
 
-    const { current, addProductToCart, cart } = productContext; //pulling out products from out context
+    const {current, addProductToCart, cart, getProductAndSetCurrent, loading} = productContext; //pulling out products from out context
+
+    useEffect(() => {
+        const id = window.location.pathname.split("/").pop(); //get id from the URL
+        getProductAndSetCurrent(id);
+        console.log(current);
+    }, []);
+
+    if (!current && !loading) {
+        return <div>
+            <Spinner />
+        </div>
+    }
 
     const {model, brand, specs, price, type, pic1} = current;
-
-    if(!current){
-        return <h4>loading...</h4>
-    }
 
     return <Fragment>
         <Link to='/store' className='btn btn-light'>

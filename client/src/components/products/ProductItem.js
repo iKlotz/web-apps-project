@@ -21,7 +21,7 @@ const ProductItem = ({ product }) => {
             <h2>{model}</h2>
 
             <div>
-                <Link to={`/store/product/${_id}`}
+                <Link to={{pathname: `/store/product/${_id}`, state: {id: _id}}}
                       //params={{ product: {model, brand, specs, price, type, pic1} }}
                       className="btn btn-dark btn-sm my-1"
                       onClick={() => setCurrent(product)}>

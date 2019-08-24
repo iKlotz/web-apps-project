@@ -1,5 +1,5 @@
 import {
-    GET_PRODUCT,
+    GET_PRODUCT_AND_SET_CURRENT,
     GET_PRODUCTS,
     ADD_PRODUCT,
     ADD_PRODUCT_TO_CART,
@@ -15,11 +15,10 @@ import {
 
 export default (state, action) => {
     switch (action.type) {
-        case GET_PRODUCT:
+        case GET_PRODUCT_AND_SET_CURRENT: //and set current
             return{
-                products: state.products.filter(
-                    product => product._id === action.payload
-                ),
+                ...state, //state is immutable
+                current: action.payload,
                 loading: false
             };
         case GET_PRODUCTS:

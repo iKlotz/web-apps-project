@@ -4,7 +4,7 @@ import productReducer from './productReducer';
 import axios from 'axios';
 
 import {
-    GET_PRODUCT,
+    GET_PRODUCT_AND_SET_CURRENT,
     GET_PRODUCTS,
     ADD_PRODUCT,
     ADD_PRODUCT_TO_CART,
@@ -45,12 +45,12 @@ const ProductState = props => {
         }
     };
 
-    const getProduct = async id => {
+    const getProductAndSetCurrent = async id => {
 
         try{
-            await axios.get(`/api/products/${id}`);
+            const res = await axios.get(`/api/products/${id}`);
 
-            dispatch({ type: GET_PRODUCT, payload: id });
+            dispatch({ type: GET_PRODUCT_AND_SET_CURRENT, payload: res.data });
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -179,7 +179,7 @@ const ProductState = props => {
                 updateProduct,
                 filterProducts,
                 clearFilter,
-                getProduct,
+                getProductAndSetCurrent,
                 getProducts,
                 clearProducts,
                 addProductToCart,

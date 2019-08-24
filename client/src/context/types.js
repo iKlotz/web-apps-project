@@ -1,5 +1,5 @@
 export const GET_PRODUCTS = 'GET_PRODUCTS';
-export const GET_PRODUCT = 'GET_PRODUCT';
+export const GET_PRODUCT_AND_SET_CURRENT = 'GET_PRODUCT';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
