@@ -10,7 +10,7 @@ const User = require('../models/User');
 // @route    GET api/auth
 // @desc     Get logged user
 // @access   Private
-router.get('/', auth, async (req, res) => {
+router.get('/', auth.authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password'); //'cause we don't want to return the password
         res.json(user);
@@ -52,7 +52,8 @@ router.post(
 
             const payload = {
                 user: {
-                    id: user.id
+                    id: user.id,
+                    admin: user.admin
                 }
             };
 

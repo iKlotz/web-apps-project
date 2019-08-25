@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-module.exports = function(req, res, next) {
+exports.authMiddleware = function(req, res, next) {
     // Get token from header
     const token = req.header('x-auth-token');
 
@@ -22,6 +22,13 @@ module.exports = function(req, res, next) {
 };
 
 
+exports.adminMiddleware = (req, res, next) => {
+    if (!req.user || !req.user.admin) return res.status(401).json({
+        error: 'Unauthorized'
+    });
+
+    next();
+}
 
 //
 // const jwt = require('jsonwebtoken');

@@ -12,15 +12,16 @@ const ProductItem = ({ product }) => {
     const { _id, model, brand, type, price, pic1, pic2, pic3, specs } = product;
 
     return (
-        <div className="card text-center">
+        <div className="card">
             <img
                 src={pic1}
-                // alt="" className="round-img"
-                style={{width: '60px'}}
+                className="card-img-top"
+                alt="..."
             />
-            <h2>{model}</h2>
-
-            <div>
+            <div className="card-body">
+                <h5 className="card-title">{model}</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
                 <Link to={{pathname: `/store/product/${_id}`, state: {id: _id}}}
                       //params={{ product: {model, brand, specs, price, type, pic1} }}
                       className="btn btn-dark btn-sm my-1"
@@ -36,3 +37,16 @@ ProductItem.propTypes = {
     product:PropTypes.object.isRequired,
 };
 export default ProductItem;
+
+//
+// <div className="card" style="width: 18rem;">
+//     <img src="..." className="card-img-top" alt="...">
+//         <div className="card-body">
+//             <h5 className="card-title">{model}</h5>
+//             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+//                 card's content.</p>
+//             <a href="#" className="btn btn-primary">Go somewhere</a>
+//         </div>
+// </div>
+//
+// <h2></h2>

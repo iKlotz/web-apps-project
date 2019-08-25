@@ -8,7 +8,7 @@ const User = require('../models/User');
 // @route    GET api/shopping-cart
 // @desc     Get all products in users shopping cart
 // @access   Private
-router.get('/', auth, async (req, res) => {
+router.get('/', auth.authMiddleware, async (req, res) => {
     try {
         //this line sorts by user ID, add auth before async to use it
         const products = await CartItem.find({ user: req.user.id }).sort({
@@ -47,7 +47,7 @@ router.get('/:id', async (req, res) => {
 router.post(
     '/',
     [
-        auth,
+        auth.authMiddleware,
         [
             check('model', 'Model is required')
                 .not()
@@ -139,7 +139,7 @@ router.post(
 // // @route    DELETE api/products/:id
 // // @desc     Delete a contact
 // // @access   Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', auth.authMiddleware, async (req, res) => {
     try {
         let product = await CartItem.findById(req.params.id);
 

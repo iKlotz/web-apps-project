@@ -2,20 +2,22 @@ const express = require('express');
 const router = express.Router();
 const {check, validationResult} = require('express-validator/check');
 const auth = require('../middleware/auth');
-const WishListItem = require('../models/WishListItem');
+const CartItem = require('../models/CartItem');
 const User = require('../models/User');
 
-// @route    GET api/wish-list
-// @desc     Get all products in users wish list
+// @route    GET api/shopping-cart
+// @desc     Get all products in users shopping cart
 // @access   Private
-router.get('/', auth.authMiddleware, async (req, res) => {
+router.get('/admin/shopping-carts', auth.adminMiddleware, async (req, res) => {
     try {
-        //this line sorts by user ID,
-        const wishListItems = await WishListItem.find({ user: req.user.id }).sort({
+        //this line sorts by user ID, add auth before async to use it
+        const products = await CartItem.find({ }).sort({
+            // const products = await CartItem.find().sort({
             date: -1
         });
 
-        res.json(wishListItems);
+        // _.groupBy(products, 'username')
+        res.json(products);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
@@ -23,29 +25,30 @@ router.get('/', auth.authMiddleware, async (req, res) => {
 });
 
 
-// @route    GET api/wish-list
+// @route    GET api/shopping-list
 // @desc     Get product from users wish list
 // @access   Private
 router.get('/:id', async (req, res) => {
     try {
-        let wishListItem = await WishListItem.findById(req.params.id);
+        let product = await CartItem.findById(req.params.id);
 
-        if (!wishListItem) return res.status(404).json({msg: 'Product not found'});
+        if (!product) return res.status(404).json({msg: 'Product not found'});
 
-        res.json(wishListItem);
+        res.json(product);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
 });
 
-// @route    POST api/wish-list
-// @desc     Add new product to wish list
+
+// @route    POST api/products
+// @desc     Add new product
 // @access   Private
 router.post(
     '/',
     [
-        auth.authMiddleware,
+        auth.adminMiddleware,
         [
             check('model', 'Model is required')
                 .not()
@@ -67,7 +70,7 @@ router.post(
         const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
 
         try {
-            const newCartItem = new WishListItem({
+            const newCartItem = new CartItem({
                 model,
                 brand,
                 specs,
@@ -113,7 +116,7 @@ router.post(
 //     if (pic3) productFields.pic3 = pic3;
 //
 //     try {
-//         let product = await WishListItem.findById(req.params.id);
+//         let product = await CartItem.findById(req.params.id);
 //
 //         if (!product) return res.status(404).json({msg: 'Product not found'});
 //
@@ -121,7 +124,7 @@ router.post(
 //         if (product.user.toString() !== req.user.id)
 //             return res.status(401).json({msg: 'Not authorized'});
 //
-//         product = await WishListItem.findByIdAndUpdate(
+//         product = await CartItem.findByIdAndUpdate(
 //             req.params.id,
 //             {$set: productFields},
 //             {new: true}
@@ -135,11 +138,11 @@ router.post(
 // });
 
 // // @route    DELETE api/products/:id
-// // @desc     Delete a product from wish list
+// // @desc     Delete a contact
 // // @access   Private
-router.delete('/:id', auth.authMiddleware, async (req, res) => {
+router.delete('/:id', auth.adminMiddleware, async (req, res) => {
     try {
-        let product = await WishListItem.findById(req.params.id);
+        let product = await CartItem.findById(req.params.id);
 
         if (!product) return res.status(404).json({msg: 'Product not found'});
 
@@ -147,7 +150,7 @@ router.delete('/:id', auth.authMiddleware, async (req, res) => {
         if (product.user.toString() !== req.user.id)
             return res.status(401).json({msg: 'Not authorized'});
 
-        await WishListItem.findByIdAndRemove(req.params.id);
+        await CartItem.findByIdAndRemove(req.params.id);
 
         res.json({msg: 'Product removed'});
     } catch (err) {

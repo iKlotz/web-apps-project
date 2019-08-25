@@ -10,9 +10,8 @@ const CartItems = () => {
     const {products, getProducts, loading, cartTotal, setTotal} = cartContext;
 
     //basically fills in our products array, sending the request to the DB
-    useEffect(() => {
+    useEffect( () => {
         getProducts();
-
         // eslint-disable-next-line
     }, []);
 

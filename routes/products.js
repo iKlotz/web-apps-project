@@ -46,7 +46,7 @@ router.get('/:id', async (req, res) => {
 router.post(
     '/',
     [
-        auth,
+        auth.adminMiddleware,
         [
             check('model', 'Model is required')
                 .not()
@@ -93,7 +93,7 @@ router.post(
 // @route    PUT api/products/:id
 // @desc     Update a product
 // @access   Private
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', auth.authMiddleware, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
         return res.status(400).json({errors: errors.array()});
@@ -136,7 +136,7 @@ router.put('/:id', auth, async (req, res) => {
 // // @route    DELETE api/products/:id
 // // @desc     Delete a contact
 // // @access   Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', auth.adminMiddleware, async (req, res) => {
     try {
         let product = await Product.findById(req.params.id);
 

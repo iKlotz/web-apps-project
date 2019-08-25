@@ -46,20 +46,20 @@ const Products = () => {
     }
 
     return (
-        <div>
-            {products !== null && !loading ? (<TransitionGroup>
-                {filtered !== null
-                    ? filtered.map(product => (
-                        <CSSTransition key={product._id} timeout={100}>
-                            <ProductItem product={product}/>
-                        </CSSTransition>
-                    ))
-                    : products.map(product => ( //map returns an array
-                        <CSSTransition key={product._id} timeout={100}>
-                            <ProductItem product={product}/>
-                        </CSSTransition>
-                    ))}
-            </TransitionGroup>) : <Spinner/>}
+        <div className='container'>
+                {products !== null && !loading ? (<div className='row'>
+                    {filtered !== null
+                        ? filtered.map(product => (
+                                <div className='col-md-4'>
+                                    <ProductItem key="product.id" product={product}/>
+                                </div>
+                        ))
+                        : products.map(product => ( //map returns an array
+                                <div className='col-md-4'>
+                                    <ProductItem key="product.id" product={product}/>
+                                </div>
+                        ))}
+                </div>) : <Spinner/>}
         </div>
     );
 };

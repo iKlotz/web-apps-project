@@ -51,9 +51,10 @@ const ProductState = props => {
 
             dispatch({ type: GET_PRODUCT_AND_SET_CURRENT, payload: res.data });
         } catch (err) {
+            console.log(err);
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.response.msg,
             });
         }
     };
