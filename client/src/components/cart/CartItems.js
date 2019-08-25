@@ -20,17 +20,19 @@ const CartItems = () => {
     }
 
     return (
-        <Fragment>
+            <div className='container'>
             {products !== null && !loading ?
                 (<TransitionGroup>
                     {products.map(product => ( //map returns an array
                         <CSSTransition key={product._id} timeout={100} classNames="item">
-                            <CartItem product={product}/>
+                            <div>
+                                <CartItem product={product}/>
+                            </div>
                         </CSSTransition>
                     ))}
                 </TransitionGroup>)
                 : <Spinner/>}
-        </Fragment>
+            </div>
     );
 };
 export default CartItems;

@@ -77,7 +77,7 @@ export default (state, action) => {
                 ...state,
                 filtered: state.products.filter(product => {
                     const regex = new RegExp(`${action.payload}`, 'gi'); //g-global i-case insensitive
-                    return product.model.match(regex) || product.brand.match(regex);
+                    return product.model.match(regex) || product.brand.match(regex) || product.type.match(regex);
                 })
             };
         case CLEAR_FILTER:

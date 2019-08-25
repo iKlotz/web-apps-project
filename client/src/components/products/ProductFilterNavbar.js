@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import ProductContext from '../../context/product/productContext';
 
-const ProductFilter = () => {
+const ProductFilterNavbar = () => {
     const productContext = useContext(ProductContext);
     const text = useRef('');
 
@@ -22,11 +22,21 @@ const ProductFilter = () => {
     };
 
     return (
-        <form className="container">
-            <input ref={text} type="text" placeholder="Search products..." onChange=
-                {onChange}/>
+        <form className="form-inline search">
+            <input
+                className="form-control mr-sm-2"
+                ref={text} type="text"
+                placeholder="Search products..."
+                onChange={onChange}
+            />
         </form>
+        // <div className="my-search-input">
+        // <form className="form-inline search">
+        // <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+        // </form>
+// </div>
+
     );
 };
 
-export default ProductFilter;
+export default ProductFilterNavbar;

@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import SearchBar from '../products/SearchBar';
 import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import ProductContext from '../../context/product/productContext';
+import ProductFilterNavbar from '../../components/products/ProductFilterNavbar';
 
 
 const Navbar = ({title, icon}) => {
@@ -16,7 +16,7 @@ const Navbar = ({title, icon}) => {
     useEffect(() => {//basically fills in our products array, sending the request to the DB
         getProducts();
         // eslint-disable-next-line
-    },[]);
+    }, []);
 
     const onLogout = () => {
         logout();
@@ -32,32 +32,44 @@ const Navbar = ({title, icon}) => {
             <li>
                 <Link to='/store'> Store </Link>
             </li>
+            <li className='nav-item'>
+                <Link to='/store'> Inspiration </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/store'> About Us </Link>
+            </li>
         </Fragment>
     );
 
     const guestLinks = (
         <Fragment>
-                <li className='nav-item'>
-                    <Link to='/'> Home </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/store'> Store </Link>
-                </li>
+            <li className='nav-item'>
+                <Link to='/'> Home </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/store'> Store </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/store'> Inspiration </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/store'> About Us </Link>
+            </li>
         </Fragment>
     );
 
     const guestLinksRight = (
         <Fragment>
             <li className='nav-item'>
-            <i className="fas fa-user-circle"/>
-            <Link to='/register'> Register </Link>
+                <i className="fas fa-user-circle"/>
+                <Link to='/register'> Register </Link>
             </li>
             <li className='nav-item'>
-            {/*<i className="fas fa-user-circle"/>*/}
-            <Link to='/login'>
-                Login
-            {/*<button type="button" className="btn btn-outline-dark">Login</button>*/}
-            </Link>
+                {/*<i className="fas fa-user-circle"/>*/}
+                <Link to='/login'>
+                    Login
+                    {/*<button type="button" className="btn btn-outline-dark">Login</button>*/}
+                </Link>
             </li>
 
         </Fragment>
@@ -83,7 +95,7 @@ const Navbar = ({title, icon}) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to='/' className="navbar-brand">
-                {/*<i className={icon}/>*/}
+                <i className={icon}/>{' '}
                 <span>{title}</span>
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -97,11 +109,12 @@ const Navbar = ({title, icon}) => {
                 <ul className="navbar-nav mr-auto">
                     {isAuthenticated ? authLinks : guestLinks}
                 </ul>
-                <div className="my-search-input">
-                    <form className="form-inline search">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                    </form>
-                </div>
+                {/*<div className="my-search-input">*/}
+                    {/*<form className="form-inline search">*/}
+                        {/*<input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>*/}
+                    {/*</form>*/}
+                {/*</div>*/}
+                {/*<ProductFilterNavbar />*/}
                 <ul className="form-inline my-2 my-lg-0">
                     {isAuthenticated ? authLinksRight : guestLinksRight}
                     {/*{authLinksRight}*/}

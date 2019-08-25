@@ -12,31 +12,33 @@ const CartItem = ({ product }) => {
     const { _id, model, brand, type, price, pic1, pic2, pic3, specs } = product;
 
     return (
-        <div className="card bg-light">
-            <img
-                src={pic1}
-                alt="" className=""
-                style={{width: '60px', float: 'left'}}
-            />
-            <h2>{model}</h2>
-            <h4>{price}</h4>
-            <span>QTY:</span>
 
-            <button style={{float: 'right'}}>
-                <i className="far fa-trash-alt"></i>
-            </button>
+        <div class="card mb-3" style={{maxWidth: '540px'}}>
+            <div className="row no-gutters">
+                <div className="col-md-4">
+                    <img src={pic1} className="card-img" alt="..."/>
+                </div>
 
-            {/*<div>*/}
-                {/*<Link to={{pathname: `/store/product/${_id}`, state: {id: _id}}}*/}
-                    {/*//params={{ product: {model, brand, specs, price, type, pic1} }}*/}
-                      {/*className="btn btn-dark btn-sm my-1"*/}
-                      {/*onClick={() => setCurrent(product)}>*/}
-                    {/*shop now*/}
-                {/*</Link>*/}
-            {/*</div>*/}
-        </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{model}</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+            <div className="qty mt-5 " >
+                <button className="minus bg-success text-center" >
+                    <i className="fas fa-minus-circle"></i>
+                </button>
+                <input type="number" className="count text-center" name="qty" style={{position: 'relative'}} value="1"/>
+                <button className="plus bg-success text-center">
+                    <i className="fas fa-plus-circle"></i>
+                </button>
+            </div>
+         </div>
     );
-}
+};
 
 CartItem.propTypes = {
     product:PropTypes.object.isRequired,

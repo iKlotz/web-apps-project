@@ -47,7 +47,8 @@ const Products = () => {
 
     return (
         <div className='container'>
-                {products !== null && !loading ? (<div className='row'>
+                {products !== null && !loading ? (
+                    <div className='row'>
                     {filtered !== null
                         ? filtered.map(product => (
                                 <div className='col-md-4'>
@@ -64,11 +65,6 @@ const Products = () => {
     );
 };
 
-//doesn't work :(
-const productStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gridGap: '1rem'
-};
+
 
 export default Products;

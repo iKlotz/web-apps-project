@@ -12,6 +12,7 @@ app.use(express.json({ extended: false }));
 // // Define Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/admin', require('./routes/admin'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/shopping-cart', require('./routes/shopping-cart'));
 app.use('/api/wish-list', require('./routes/wish-list'));

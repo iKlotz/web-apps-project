@@ -3,15 +3,17 @@ import Explorer from "../../images/explorer.jpg";
 import Telecaster from '../../images/telecaster.jpg';
 import Ibanez from '../../images/ibanez.jpg';
 import AuthContext from '../../context/auth/authContext';
+import ProductContext from '../../context/product/productContext';
 
 const Home = () => {
-    // const authContext = useContext(AuthContext);
-    //
-    // useEffect(() => {
-    //     authContext.loadUser();
-    //
-    //     //eslint-disable-next-line
-    // }, []);
+    const authContext = useContext(AuthContext);
+    const productContext = useContext(ProductContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+        //productContext.getProducts();
+        //eslint-disable-next-line
+    }, []);
     
     return (
         <div className="row">

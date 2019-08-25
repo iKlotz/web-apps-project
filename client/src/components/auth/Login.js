@@ -74,7 +74,7 @@ const Login = (props) => {
                     <input type="checkbox" name="remember_me" value="true" onChange={onChange}/> Remember me
                     <input type="submit"
                            value="Login"
-                           className="btn btn-primary btn-block"/>
+                           className="btn btn-secondary btn-block"/>
                 </div>
             </form>
         </div>
