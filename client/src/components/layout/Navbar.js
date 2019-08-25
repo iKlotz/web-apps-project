@@ -1,4 +1,4 @@
-import React, {useContext, Fragment} from 'react';
+import React, {useContext, useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from '../products/SearchBar';
 import {Link} from 'react-router-dom';
@@ -10,8 +10,13 @@ const Navbar = ({title, icon}) => {
     const authContext = useContext(AuthContext);
     const productContext = useContext(ProductContext);
 
-    const { isAuthenticated, logout, user } = authContext;
-    const {clearProducts} = productContext;
+    const {isAuthenticated, logout, user} = authContext;
+    const {clearProducts, getProducts} = productContext;
+
+    useEffect(() => {//basically fills in our products array, sending the request to the DB
+        getProducts();
+        // eslint-disable-next-line
+    },[]);
 
     const onLogout = () => {
         logout();
@@ -27,9 +32,44 @@ const Navbar = ({title, icon}) => {
             <li>
                 <Link to='/store'> Store </Link>
             </li>
+        </Fragment>
+    );
+
+    const guestLinks = (
+        <Fragment>
+                <li className='nav-item'>
+                    <Link to='/'> Home </Link>
+                </li>
+                <li className='nav-item'>
+                    <Link to='/store'> Store </Link>
+                </li>
+        </Fragment>
+    );
+
+    const guestLinksRight = (
+        <Fragment>
+            <li className='nav-item'>
+            <i className="fas fa-user-circle"/>
+            <Link to='/register'> Register </Link>
+            </li>
+            <li className='nav-item'>
+            {/*<i className="fas fa-user-circle"/>*/}
+            <Link to='/login'>
+                Login
+            {/*<button type="button" className="btn btn-outline-dark">Login</button>*/}
+            </Link>
+            </li>
+
+        </Fragment>
+    );
+
+    const authLinksRight = (
+        <Fragment>
             <li>Hello {user && user.firstname}</li>
             <li>
-                <Link to='/shopping-cart'> Cart </Link>
+                <Link to='/shopping-cart'>
+                    <i className="fas fa-shopping-cart"/>
+                </Link>
             </li>
             <li>
                 <a onClick={onLogout} href="#!">
@@ -40,25 +80,11 @@ const Navbar = ({title, icon}) => {
         </Fragment>
     );
 
-    const guestLinks = (
-        <Fragment>
-            <ul>
-                <li className='nav-item'>
-                    <Link to='/'> Home </Link>
-                </li>
-                <li className='nav-item'>
-                    <Link to='/store'> Store </Link>
-                </li>
-
-            </ul>
-
-        </Fragment>
-    );
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to='/' className="navbar-brand">
-                <i className={icon}/> {title}
+                {/*<i className={icon}/>*/}
+                <span>{title}</span>
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -66,22 +92,20 @@ const Navbar = ({title, icon}) => {
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div className="collapse navbar-collapse my-search-box" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     {isAuthenticated ? authLinks : guestLinks}
                 </ul>
+                <div className="my-search-input">
+                    <form className="form-inline search">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                    </form>
+                </div>
                 <ul className="form-inline my-2 my-lg-0">
-                    <li className='nav-item'>
-                        <i className="fas fa-user-circle"/>
-                        <Link to='/register'> Register </Link>
-                    </li>
-                    <li className='nav-item'>
-                        {/*<i className="fas fa-user-circle"/>*/}
-                        <Link to='/login'>
-                            <button type="button" className="btn btn-outline-dark">Login</button>
-                        </Link>
+                    {isAuthenticated ? authLinksRight : guestLinksRight}
+                    {/*{authLinksRight}*/}
 
-                    </li>
                 </ul>
             </div>
         </nav>

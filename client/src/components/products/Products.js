@@ -51,12 +51,12 @@ const Products = () => {
                     {filtered !== null
                         ? filtered.map(product => (
                                 <div className='col-md-4'>
-                                    <ProductItem key="product.id" product={product}/>
+                                    <ProductItem key={product._id} product={product}/>
                                 </div>
                         ))
                         : products.map(product => ( //map returns an array
                                 <div className='col-md-4'>
-                                    <ProductItem key="product.id" product={product}/>
+                                    <ProductItem key={product._id} product={product}/>
                                 </div>
                         ))}
                 </div>) : <Spinner/>}
