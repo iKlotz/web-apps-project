@@ -32,9 +32,9 @@ const ShoppingCart = () => {
                     <div className="card">
                         <h5 className="card-header">Subtotal: $ {cartTotal}</h5>
                         <div className="card-body">
-                            <h5 className="card-title">Special title treatment</h5>
-                            <p className="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
+                            <h5 className="card-title">We're here for you!</h5>
+                            <p className="card-text">If you need us to add present card, just so your wife don't
+                            worry that you spend to much money on guitars, just say ;)</p>
                             <button type="button" className="btn btn-success">PLACE ORDER</button>
                             {/*<a href="#" className="btn btn-primary">PLACE ORDER</a>*/}
                         </div>

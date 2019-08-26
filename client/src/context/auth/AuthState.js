@@ -18,6 +18,7 @@ const AuthState = props => {
     const initialState = {
         token: localStorage.getItem('token'), //vanilla js method, browsers (local) storage.
         isAuthenticated: null,
+        isAdmin: null,
         user: null,
         loading: true,
         error: null
@@ -53,15 +54,15 @@ const AuthState = props => {
         };
 
         try {
-            //we don't need to enter localhost 'cause we set it as proxy
+            //we don't need to enter localhost 'cause we set it as a proxy
             const res = await axios.post('/api/users', formData, config);
 
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data //should be a token
             });
-
             loadUser();
+
         } catch (err) {
             dispatch({
                 type: REGISTER_FAIL,
@@ -113,6 +114,7 @@ const AuthState = props => {
             value={{
                 token: state.token,
                 isAuthenticated: state.isAuthenticated,
+                isAdmin: state.isAdmin,
                 loading: state.loading,
                 user: state.user,
                 error: state.error,
