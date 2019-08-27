@@ -16,15 +16,18 @@ export default (state, action) => {
                 ...state,
                 isAuthenticated: true,
                 loading: false,
-                user: action.payload
+                user: action.payload,
+                isAdmin: action.payload.admin
             };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-            localStorage.setItem('token', action.payload.token); //cookie
+            localStorage.setItem('token', action.payload.token); //cookie (well kind of)
+            //console.log(action.payload);
             return {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
+                isAdmin: action.payload.admin,
                 loading: false
             };
 

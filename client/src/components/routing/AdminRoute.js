@@ -7,8 +7,8 @@ const AdminRoute = ({component: Component, ...rest}) => {
     const {isAdmin, isAuthenticated, loading} = authContext;
 
     return (
-        <Route {...rest} render={props => (!isAdmin && !loading) ? (
-            <Redirect to='/login'/>
+        <Route {...rest} render={props => (!loading && !isAdmin) ? (
+            <Redirect to='/sorrybro'/>
         ) : (
             <Component {...props}/> //if user isAuthenticated just load the component with all its props.
         )}/>

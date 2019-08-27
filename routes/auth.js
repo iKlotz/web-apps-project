@@ -37,6 +37,7 @@ router.post(
 
         const { email, password, remember_me } = req.body;
 
+        console.log(req.body);
         try {
             let user = await User.findOne({ email });
 
@@ -52,7 +53,7 @@ router.post(
 
             const payload = {
                 user: {
-                    id: user.id,
+                    id: user._id,  //changed from id (_id in mongo)
                     admin: user.admin
                 }
             };
