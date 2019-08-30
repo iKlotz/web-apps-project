@@ -3,6 +3,7 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator/check');
 const auth = require('../middleware/auth');
 const Product = require('../models/Product');
+const CartItem = require('../models/CartItem');
 const User = require('../models/User');
 
 // @route    GET api/shopping-cart
@@ -25,34 +26,42 @@ const User = require('../models/User');
 // });
 
 
-// @route    GET api/products
-// @desc     Get all products
+// @route    GET admin/users
+// @desc     Get all users
 // @access   Public
-router.get('/', auth.adminMiddleware, async (req, res) => {
+
+//add middleware
+//[auth.authMiddleware, auth.adminMiddleware],
+router.get('/', async (req, res) => {
     try {
         //this line sorts by user ID, add auth before async to use it
         // const products = await Product.find({ user: req.user.id }).sort({
-        const products = await Product.find().sort({
+        const users = await User.find().sort({
             date: -1
         });
 
-        res.json(products);
+        res.json(users);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
 });
 
-// @route    GET api/product
-// @desc     Get specific product
+// @route    GET api/admin
+// @desc     Get specific users shopping-cart content
 // @access   Public
 router.get('/:id', async (req, res) => {
     try {
-        let product = await Product.findById(req.params.id);
+        //extracts an id from http request
+        let item = await CartItem.find({ user: req.body._id }).sort({
+            date: -1
+        });
 
-        if (!product) return res.status(404).json({msg: 'Product not found'});
+        console.log(req);
 
-        res.json(product);
+        if (!item) return res.status(404).json({msg: 'Users cart is empty'});
+
+        res.json(item);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
