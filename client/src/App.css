@@ -955,9 +955,9 @@ body {
     border-radius: 50%;
     background-clip: padding-box;
 }
-div {
-    text-align: center;
-}
+/*div {*/
+    /*text-align: center;*/
+/*}*/
 .minus:hover{
     background-color: #717fe0 !important;
 }

@@ -13,7 +13,7 @@ const CartItems = () => {
     useEffect( () => {
         getProducts();
         // eslint-disable-next-line
-    }, []);
+    }, [cartTotal]);
 
     if (products !== null && products.length === 0 && !loading) {
         return <h4>The cart is empty...</h4>
@@ -24,9 +24,9 @@ const CartItems = () => {
             {products !== null && !loading ?
                 (<TransitionGroup>
                     {products.map(product => ( //map returns an array
-                        <CSSTransition key={product._id} timeout={100} classNames="item">
+                        <CSSTransition key={product._id} timeout={300} classNames="item">
                             <div>
-                                <CartItem product={product}/>
+                                <CartItem key={product._id} product={product}/>
                             </div>
                         </CSSTransition>
                     ))}

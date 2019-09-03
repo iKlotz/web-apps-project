@@ -58,7 +58,7 @@ const CartState = props => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.response.msg //changed from response
             });
         }
     };

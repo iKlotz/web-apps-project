@@ -1,5 +1,6 @@
 import React, {Fragment, useContext, useEffect} from 'react';
 import ProductContext from '../../context/product/productContext';
+import CartContext from '../../context/cart/cartContext';
 import {Link} from "react-router-dom";
 import Spinner from '../../components/layout/Spinner';
 import Explorer from '../../images/explorer.jpg';
@@ -7,13 +8,14 @@ import Explorer from '../../images/explorer.jpg';
 const ProductCard = () => {
 
     const productContext = useContext(ProductContext); //init context
+    const cartContext = useContext(CartContext);
 
-    const {current, addProductToCart, cart, getProductAndSetCurrent, loading} = productContext; //pulling out products from out context
+    const {current, getProductAndSetCurrent, loading} = productContext; //pulling out products from out context
+    const {addProduct} = cartContext;
 
     useEffect(() => {
         const id = window.location.pathname.split("/").pop(); //get id from the URL
         getProductAndSetCurrent(id);
-        console.log(current);
     }, []);
 
     if (!current && !loading) {
@@ -62,11 +64,11 @@ const ProductCard = () => {
                             </li>
 
                             <div className="">
-                                <button type="button" className="btn btn-dark"  onClick={() => console.log(current)}>
+                                <button type="button" className="btn btn-dark"  onClick={() => addProduct(current)}>
                                     <i className="far fa-heart"></i>
                                 </button>
 
-                                <button type="button" className="btn btn-dark"  onClick={() => console.log(current)}>
+                                <button type="button" className="btn btn-dark"  onClick={() => addProduct(current)}>
                                     <i className="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
@@ -105,8 +107,6 @@ const ProductCard = () => {
                 </div>
             </div>
         </div>
-        {/*</div>*/}
-
     </Fragment>;
 };
 

@@ -63,8 +63,8 @@ export default (state, action) => {
                 ...state,
                 //products: action.payload,
                 cartTotal: action.payload.reduce((acc, currVal) =>
-                    (acc.price * acc.quantity) + (currVal.price * currVal.quantity))
-            };
+                    acc + (currVal.price * currVal.quantity), 0)};
+
         case PRODUCT_ERROR:
             return {
                 ...state,
