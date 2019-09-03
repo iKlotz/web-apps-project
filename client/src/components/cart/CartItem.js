@@ -7,12 +7,29 @@ const CartItem = ({ product }) => {
 
     const cartContext = useContext(CartContext);
 
-    const { deleteProduct, setCurrent, clearCurrent, current, setTotal} = cartContext;
+    const { deleteProduct, setCurrent, clearCurrent, current, setTotal, updateProduct} = cartContext;
 
-    const { _id, model, brand, type, price, pic1, pic2, pic3, specs } = product;
+    const { _id, model, brand, type, price, pic1, pic2, pic3, specs, quantity } = product;
+
 
     const onRemove = () => {
         deleteProduct(_id);
+        setTotal();
+    };
+
+    const onPlus = (product) => {
+        let temp = product;
+        temp.quantity++;
+        updateProduct(temp);
+        setTotal();
+    };
+
+    const onMinus = (product) => {
+        let temp = product;
+        if(temp.quantity > 1){
+            temp.quantity--;
+        };
+        updateProduct(temp);
         setTotal();
     };
 
@@ -33,17 +50,25 @@ const CartItem = ({ product }) => {
                 </div>
             </div>
             <div className="qty mt-5 " >
-                <button className="minus bg-success text-center" >
-                    <i className="fas fa-minus-circle"></i>
+                <button className="minus bg-success text-center" onClick={()=> onMinus(product)}>
+                    <i className="fas fa-minus-circle"/>
                 </button>
-                <input type="number" className="count text-center" name="qty" style={{position: 'relative'}} value="1"/>
-                <button className="plus bg-success text-center">
-                    <i className="fas fa-plus-circle"></i>
+                <input type="number"
+                       className="count text-center"
+                       name="qty"
+                       style={{position: 'relative'}}
+                       value={quantity}
+                />
+                <button className="plus bg-success text-center" onClick={()=> onPlus(product)}>
+                    <i className="fas fa-plus-circle"/>
                 </button>
-                <button className="btn btn-outline-dark"
+                <button className="btn btn-light"
+                        style={{position: "absolute", bottom: "15px", right: 0}}
+                >Update</button>
+                <button className="btn btn-light"
                         onClick={onRemove}
-                        style={{position: "absolute", top: 0, right: 0, borderRadius: "50%" }}>
-                    <i className="far fa-trash-alt"></i>
+                        style={{position: "absolute", top: 0, right: 0, borderRadius: "50%"}}>
+                    <i className="far fa-trash-alt"/>
                 </button>
             </div>
          </div>

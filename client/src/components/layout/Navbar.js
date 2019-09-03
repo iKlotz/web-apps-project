@@ -96,7 +96,7 @@ const Navbar = ({title, icon}) => {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to='/' className="navbar-brand">
                 <i className={icon}/>{' '}
-                <span>{title}</span>
+                <span className="navbar-item">{title}</span>
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -109,12 +109,6 @@ const Navbar = ({title, icon}) => {
                 <ul className="navbar-nav mr-auto">
                     {isAuthenticated ? authLinks : guestLinks}
                 </ul>
-                {/*<div className="my-search-input">*/}
-                    {/*<form className="form-inline search">*/}
-                        {/*<input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>*/}
-                    {/*</form>*/}
-                {/*</div>*/}
-                {/*<ProductFilterNavbar />*/}
                 <ul className="form-inline my-2 my-lg-0">
                     {isAuthenticated ? authLinksRight : guestLinksRight}
                     {/*{authLinksRight}*/}

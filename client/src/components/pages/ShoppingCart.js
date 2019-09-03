@@ -17,7 +17,6 @@ const ShoppingCart = () => {
         authContext.loadUser();
         getProducts();
         setTotal();
-        console.log(cartTotal);
         //eslint-disable-next-line
     }, [cartTotal]);
 

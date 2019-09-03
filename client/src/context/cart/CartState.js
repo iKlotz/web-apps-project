@@ -123,7 +123,7 @@ const CartState = props => {
         };
 
         try{
-            const res = await axios.put(`/api/products/${product._id}`, product, config);
+            const res = await axios.put(`/api/shopping-cart/${product._id}`, product, config);
 
             dispatch({ type: UPDATE_PRODUCT, payload: res.data });
         } catch (err) {

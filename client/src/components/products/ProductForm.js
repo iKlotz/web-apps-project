@@ -125,22 +125,6 @@ const ProductForm = () => {
                 onChange={onChange}
             />
 
-
-            {/*<h5>Product Type</h5>*/}
-            {/*<input*/}
-                {/*type="radio"*/}
-                {/*name="type"*/}
-                {/*value="Electric Guitar"*/}
-                {/*checked="true"*/}
-                {/*onChange={onChange}*/}
-            {/*/>Electric{''}*/}
-            {/*<input*/}
-                {/*type="radio"*/}
-                {/*name="type"*/}
-                {/*value="Acoustic Guitar"*/}
-                {/*checked={type === ''}*/}
-                {/*onChange={onChange}*/}
-            {/*/>Acoustic Guitar{' '}*/}
             <div>
                 <input
                     type="submit"

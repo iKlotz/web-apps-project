@@ -24,8 +24,8 @@ const ProductsList = () => {
                 {filtered !== null
                     ? filtered.map(product => (
                         <CSSTransition key={product._id} timeout={100} classNames="item">
-                            <ProductListItem product={product}/>
-                        </CSSTransition>
+                    <ProductListItem product={product}/>
+                    </CSSTransition>
                     ))
                     : products.map(product => ( //map returns an array
                         <CSSTransition key={product._id} timeout={100} classNames="item">

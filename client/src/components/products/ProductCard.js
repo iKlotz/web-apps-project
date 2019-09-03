@@ -24,7 +24,7 @@ const ProductCard = () => {
         </div>
     }
 
-    const {model, brand, specs, price, type, pic1} = current;
+    const {model, brand, specs, price, type, pic1, pic2, pic3} = current;
 
     return <Fragment>
         <div>
@@ -83,13 +83,13 @@ const ProductCard = () => {
                             </ol>
                             <div className="carousel-inner">
                                 <div className="carousel-item active text-center">
-                                    <img src={Explorer} className="carousel-image" alt="..."/>
+                                    <img src={pic1} className="carousel-image" alt="..."/>
                                 </div>
                                 <div className="carousel-item text-center">
-                                    <img src={Explorer} className="carousel-image" alt="..."/>
+                                    <img src={pic2} className="carousel-image" alt="..."/>
                                 </div>
                                 <div className="carousel-item text-center">
-                                    <img src={Explorer} className="carousel-image" alt="..."/>
+                                    <img src={pic3} className="carousel-image" alt="..."/>
                                 </div>
                             </div>
                             <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button"

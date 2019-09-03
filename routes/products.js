@@ -46,7 +46,8 @@ router.get('/:id', async (req, res) => {
 router.post(
     '/',
     [
-        [auth.authMiddleware, auth.adminMiddleware],
+        // [auth.authMiddleware, auth.adminMiddleware],
+        auth.authMiddleware,
         [
             check('model', 'Model is required')
                 .not()
@@ -93,7 +94,9 @@ router.post(
 // @route    PUT api/products/:id
 // @desc     Update a product
 // @access   Private
-router.put('/:id', [auth.authMiddleware, auth.adminMiddleware], async (req, res) => {
+router.put('/:id',
+    // [auth.authMiddleware, auth.adminMiddleware],
+    async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
         return res.status(400).json({errors: errors.array()});

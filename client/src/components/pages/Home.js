@@ -35,11 +35,11 @@ const Home = () => {
                     </div>
                     <div className="product_text_two product_text">
                         <h1>Explorer</h1>
-                        <p>100% COMBED COTTON</p>
-                        <p>COLOR: DARK BLUE</p>
-                        <p>ROUND NECK & HALF SLEEVES</p>
-                        <p>Classic fit, slightly long</p>
-                        <p>GSM: 180</p>
+                        <p>Neck material: Mahogany</p>
+                        <p>Body material: Mahogany</p>
+                        <p>Neck Profile: Slim Taper</p>
+                        <p>Number of Frets: 22</p>
+                        <p>Finish: Gloss Nitrocellulose Lacquer</p>
                         <p>PRICE: $ 2100.99</p>
                         <a className="shop_now_btn" href="#">SHOP NOW</a>
                     </div>
@@ -52,12 +52,12 @@ const Home = () => {
                     </div>
                     <div className="product_text_two tre_shirt_2_text product_text">
                         <h1>FENDER</h1>
-                        <p>100% COMBED COTTON</p>
-                        <p>COLOR: WHITE & BLACK</p>
-                        <p>ROUND NECK & HALF SLEEVES</p>
-                        <p>Classic fit, slightly long</p>
-                        <p>GSM: 180</p>
-                        <p>PRICE: $ 21.99</p>
+                        <p>Neck material: Maple</p>
+                        <p>Body material: Alder</p>
+                        <p>Neck Profile: "Thin C"</p>
+                        <p>Number of Frets: 22</p>
+                        <p>Finish: Gloss Tobaco Burst</p>
+                        <p>PRICE: $ 1599.99</p>
                         <a className="shop_now_btn" href="#">SHOP NOW</a>
                     </div>
                 </div>
@@ -89,12 +89,12 @@ const Home = () => {
                     </div>
                     <div className="product_text_two product_text">
                         <h1>JEM 777</h1>
-                        <p>100% COMBED COTTON</p>
-                        <p>COLOR: GRAY WITH BLACK</p>
-                        <p>ROUND NECK & HALF SLEEVES</p>
-                        <p>Classic fit, slightly long</p>
-                        <p>GSM: 180</p>
-                        <p>PRICE: $ 31.99</p>
+                        <p>Neck material: Maple</p>
+                        <p>Body material: American Basswood</p>
+                        <p>Neck Profile: "JEM"</p>
+                        <p>Number of Frets: 24</p>
+                        <p>Finish: Flowers & Shit</p>
+                        <p>PRICE: $ 2599.99</p>
                         <a className="shop_now_btn" href="#">SHOP NOW</a>
                     </div>
                 </div>
