@@ -10,7 +10,7 @@ const Navbar = ({title, icon}) => {
     const authContext = useContext(AuthContext);
     const productContext = useContext(ProductContext);
 
-    const {isAuthenticated, logout, user} = authContext;
+    const {isAuthenticated, isAdmin, logout, user} = authContext;
     const {clearProducts, getProducts} = productContext;
 
     useEffect(() => {//basically fills in our products array, sending the request to the DB
@@ -37,6 +37,23 @@ const Navbar = ({title, icon}) => {
             </li>
             <li className='nav-item'>
                 <Link to='/store'> About Us </Link>
+            </li>
+        </Fragment>
+    );
+
+    const adminLinks = (
+        <Fragment>
+            <li>
+                <Link to='/'> Home </Link>
+            </li>
+            <li>
+                <Link to='/store'> Store </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/manage-products'> Manage Products </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/users'> Customers Activity </Link>
             </li>
         </Fragment>
     );
@@ -77,20 +94,56 @@ const Navbar = ({title, icon}) => {
 
     const authLinksRight = (
         <Fragment>
-            <li>Hello {user && user.firstname}</li>
+            <li>Hi, {user && user.firstname}</li>
             <li>
                 <Link to='/shopping-cart'>
                     <i className="fas fa-shopping-cart"/>
                 </Link>
             </li>
             <li>
-                <a onClick={onLogout} href="#!">
+                <a onClick={onLogout} href="/">
                     <i className="fas fa-sign-out-alt"/>
                     <span className="hide-sm">Logout</span>
                 </a>
             </li>
         </Fragment>
     );
+
+    const adminLinksRight = (
+        <Fragment>
+            <li>Hi, {user && user.firstname}</li>
+            <li>
+                <a onClick={onLogout} href="/">
+                    <i className="fas fa-sign-out-alt"/>
+                    <span className="hide-sm">Logout</span>
+                </a>
+            </li>
+        </Fragment>
+    );
+
+    const leftLinks = () => {
+        let links;
+        if(isAdmin){
+            links = adminLinks;
+        } else if(isAuthenticated){
+            links = authLinks;
+        } else {
+            links = guestLinks;
+        }
+        return links;
+    };
+
+    const rightLinks = () => {
+        let links;
+        if(isAdmin){
+            links = adminLinksRight;
+        } else if(isAuthenticated){
+            links = authLinksRight;
+        } else {
+            links = guestLinksRight;
+        }
+        return links;
+    };
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -107,17 +160,17 @@ const Navbar = ({title, icon}) => {
 
             <div className="collapse navbar-collapse my-search-box" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                    {isAuthenticated ? authLinks : guestLinks}
+                    {/*{isAuthenticated ? authLinks : guestLinks}*/}
+                    {leftLinks()}
                 </ul>
                 <ul className="form-inline my-2 my-lg-0">
-                    {isAuthenticated ? authLinksRight : guestLinksRight}
-                    {/*{authLinksRight}*/}
-
+                    {/*{isAuthenticated ? authLinksRight : guestLinksRight}*/}
+                    {rightLinks()}
                 </ul>
             </div>
         </nav>
     );
-}
+};
 
 Navbar.propTypes = {
     title: PropTypes.string.isRequired,

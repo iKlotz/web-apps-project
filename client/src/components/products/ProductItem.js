@@ -15,8 +15,9 @@ const ProductItem = ({ product }) => {
         <div className="card">
             <img
                 src={pic1}
-                className="card-img-top"
+                className="w-100"
                 alt="..."
+                style={{height: "190px"}}
             />
             <div className="card-body">
                 <h5 className="card-title">{model}</h5>

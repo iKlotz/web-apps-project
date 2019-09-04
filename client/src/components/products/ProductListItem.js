@@ -16,7 +16,7 @@ const ProductListItem = ({ product }) => {
 
     return (
         <div className='card bg-light'>
-            <h3 className="text-primary text-left">
+            <h3 className="">
                 {model}{' '}
             </h3>
             <span style={{float: 'right'}}

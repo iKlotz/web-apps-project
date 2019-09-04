@@ -40,8 +40,8 @@ const Home = () => {
                         <p>Neck Profile: Slim Taper</p>
                         <p>Number of Frets: 22</p>
                         <p>Finish: Gloss Nitrocellulose Lacquer</p>
-                        <p>PRICE: $ 2100.99</p>
-                        <a className="shop_now_btn" href="#">SHOP NOW</a>
+                        <p>PRICE: $2099</p>
+                        <a className="shop_now_btn" href="http://localhost:3000/store/product/5d6ff8b4d21f2830d827db03">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -57,8 +57,8 @@ const Home = () => {
                         <p>Neck Profile: "Thin C"</p>
                         <p>Number of Frets: 22</p>
                         <p>Finish: Gloss Tobaco Burst</p>
-                        <p>PRICE: $ 1599.99</p>
-                        <a className="shop_now_btn" href="#">SHOP NOW</a>
+                        <p>PRICE: $1599</p>
+                        <a className="shop_now_btn" href="http://localhost:3000/store/product/5d6ffb1931717c55e8c035c5">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -94,8 +94,8 @@ const Home = () => {
                         <p>Neck Profile: "JEM"</p>
                         <p>Number of Frets: 24</p>
                         <p>Finish: Flowers & Shit</p>
-                        <p>PRICE: $ 2599.99</p>
-                        <a className="shop_now_btn" href="#">SHOP NOW</a>
+                        <p>PRICE: $ 2599</p>
+                        <a className="shop_now_btn" href="/store">SHOP NOW</a>
                     </div>
                 </div>
             </div>

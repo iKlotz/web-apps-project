@@ -2,12 +2,17 @@ import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CartContext from '../../context/cart/cartContext';
+import ProductContext from '../../context/product/productContext';
 
 const CartItem = ({ product }) => {
 
     const cartContext = useContext(CartContext);
 
-    const { deleteProduct, setCurrent, clearCurrent, current, setTotal, updateProduct} = cartContext;
+    const productContext = useContext(ProductContext);
+
+    const { deleteProduct, clearCurrent, current, setTotal, updateProduct} = cartContext;
+
+    const { setCurrent } = productContext;
 
     const { _id, model, brand, type, price, pic1, pic2, pic3, specs, quantity } = product;
 
@@ -62,14 +67,21 @@ const CartItem = ({ product }) => {
                 <button className="plus bg-success text-center" onClick={()=> onPlus(product)}>
                     <i className="fas fa-plus-circle"/>
                 </button>
-                <button className="btn btn-light"
-                        style={{position: "absolute", bottom: "15px", right: 0}}
-                >Update</button>
+                {/*<button className="btn btn-light"*/}
+                        {/*style={{position: "absolute", bottom: "15px", right: 0}}*/}
+                {/*>Update</button>*/}
                 <button className="btn btn-light"
                         onClick={onRemove}
                         style={{position: "absolute", top: 0, right: 0, borderRadius: "50%"}}>
                     <i className="far fa-trash-alt"/>
                 </button>
+                <Link to={{pathname: `/store/product/${_id}`, state: {id: _id}}}
+                      className="btn btn-light"
+                      onClick={() => setCurrent(product)}
+                      style={{position: "absolute", bottom: "15px", right: 0}}
+                >
+                    View Item
+                </Link>
             </div>
          </div>
     );
