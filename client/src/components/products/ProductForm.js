@@ -34,7 +34,7 @@ const ProductForm = () => {
         specs:''
     });
 
-    const {model, brand, price, type, pic1, pic2, pic3, specs} = product;
+    const {model, brand, price, type, pic1, pic2, pic3, specs, quantity} = product;
 
     const onChange = e =>
         setProduct({...product, [e.target.name]: e.target.value});
@@ -57,7 +57,8 @@ const ProductForm = () => {
             pic1: '',
             pic2: '',
             pic3: '',
-            specs: ''
+            specs: '',
+            quantity: 1
         });
     };
 
@@ -122,6 +123,14 @@ const ProductForm = () => {
                 placeholder="Add specs"
                 name="specs"
                 value={specs}
+                onChange={onChange}
+            />
+
+            <input
+                type="text"
+                placeholder="Add quantity"
+                name="quantity"
+                value={quantity}
                 onChange={onChange}
             />
 

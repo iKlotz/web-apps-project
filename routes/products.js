@@ -95,7 +95,7 @@ router.post(
 // @desc     Update a product
 // @access   Private
 router.put('/:id',
-    // [auth.authMiddleware, auth.adminMiddleware],
+    [auth.authMiddleware, auth.adminMiddleware],
     async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
