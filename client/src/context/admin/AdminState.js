@@ -1,44 +1,64 @@
 import React, {useReducer} from 'react';
-import ProductContext from './productContext';
-import productReducer from './productReducer';
+import AdminContext from './adminContext';
+import adminReducer from './adminReducer';
 import axios from 'axios';
 
 import {
     GET_PRODUCT_AND_SET_CURRENT,
-    GET_PRODUCTS,
+    GET_USERS,
+    USER_ERROR,
     ADD_PRODUCT,
     ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_PRODUCT,
-    FILTER_PRODUCTS,
+    FILTER_USERS,
     CLEAR_PRODUCTS,
-    CLEAR_FILTER, PRODUCT_ERROR
+    CLEAR_FILTER,
+    PRODUCT_ERROR, GET_CURRENT_CART
 } from '../types';
 
-const ProductState = props => {
+const AdminState = props => {
     const initialState = {
-        products: null,
+        users: null,
         current: null,
+        currentCart: null,
         filtered: null,
         error: null
     };
 
-    const [state, dispatch] = useReducer(productReducer, initialState);
+    const [state, dispatch] = useReducer(adminReducer, initialState);
 
-    //Get Products
-    const getProducts = async () => {
+    //Get Users
+    const getUsers = async () => {
         try{
-            const res = await axios.get('/api/products');
+            const res = await axios.get('/api/admin/users');
 
             dispatch({
-                type: GET_PRODUCTS,
+                type: GET_USERS,
                 payload: res.data
-            }); //all the products in stock
+            });
         } catch (err) {
             dispatch({
-                type: PRODUCT_ERROR,
+                type: USER_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
+    //Get Current Cart
+    const getCurrentCart = async id => {
+        try{
+            const res = await axios.get(`/api/admin/users/${id}`);
+
+            dispatch({
+                type: GET_CURRENT_CART,
+                payload: res.data
+            });
+        } catch (err) {
+            dispatch({
+                type: USER_ERROR,
                 payload: err.response.msg
             });
         }
@@ -79,6 +99,8 @@ const ProductState = props => {
         }
     };
 
+
+
     //Delete product
     const deleteProduct = async id => {
 
@@ -101,8 +123,8 @@ const ProductState = props => {
 
 
     //Set current
-    const setCurrent = product => {
-        dispatch({ type: SET_CURRENT, payload: product });
+    const setCurrent = user => {
+        dispatch({ type: SET_CURRENT, payload: user });
     };
 
     //Clear current
@@ -133,8 +155,8 @@ const ProductState = props => {
     };
 
     //Filter
-    const filterProducts = text => {
-        dispatch({ type: FILTER_PRODUCTS, payload: text });
+    const filterUsers = text => {
+        dispatch({ type: FILTER_USERS, payload: text });
     };
 
     //Clear Filter
@@ -145,30 +167,31 @@ const ProductState = props => {
 
 
     return (
-        <ProductContext.Provider
+        <AdminContext.Provider
             value={{
-                products: state.products,
+                users: state.users,
                 current: state.current,
                 filtered: state.filtered,
                 error: state.error,
+                currentCart: state.currentCart,
                 addProduct,
                 deleteProduct,
                 setCurrent,
                 clearCurrent,
                 updateProduct,
-                filterProducts,
+                filterUsers,
                 clearFilter,
-                getProductAndSetCurrent,
-                getProducts,
+                getUsers,
+                getCurrentCart,
                 clearProducts
             }}
         >
             {props.children}
-        </ProductContext.Provider>
+        </AdminContext.Provider>
     );
 };
 
-export default ProductState;
+export default AdminState;
 
 
 

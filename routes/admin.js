@@ -32,7 +32,7 @@ const User = require('../models/User');
 
 //add middleware
 //[auth.authMiddleware, auth.adminMiddleware],
-router.get('/', async (req, res) => {
+router.get('/users', [auth.authMiddleware, auth.adminMiddleware], async (req, res) => {
     try {
         //this line sorts by user ID, add auth before async to use it
         // const products = await Product.find({ user: req.user.id }).sort({
@@ -50,18 +50,21 @@ router.get('/', async (req, res) => {
 // @route    GET api/admin
 // @desc     Get specific users shopping-cart content
 // @access   Public
-router.get('/:id', async (req, res) => {
+router.get('/users/:id', async (req, res) => {
     try {
         //extracts an id from http request
-        let item = await CartItem.find({ user: req.body._id }).sort({
+
+        // let product = await Product.findById(req.params.id);
+        // let item = await CartItem.find({ user: req.body._id }).sort({
+        let items = await CartItem.find({user: req.params.id}).sort({
             date: -1
         });
 
-        console.log(req);
+        console.log(req.params.id);
 
-        if (!item) return res.status(404).json({msg: 'Users cart is empty'});
+        if (!items) return res.status(404).json({msg: 'Users cart is empty'});
 
-        res.json(item);
+        res.json(items);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');

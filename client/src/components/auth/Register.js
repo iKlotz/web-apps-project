@@ -49,9 +49,6 @@ const Register = props => {
             });
         }
     };
-    // const onSubmit =() => {
-    //     console.log('Boom');
-    // };
 
 
     return (

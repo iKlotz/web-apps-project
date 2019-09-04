@@ -42,7 +42,7 @@ const Products = () => {
     },[]);
 
     if (products !== null && products.length === 0 && !loading) {
-        return <h4>The store is empty...</h4>
+        return <h4>               The store is empty...</h4>
     }
 
     return (
