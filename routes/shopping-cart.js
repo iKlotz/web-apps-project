@@ -53,10 +53,10 @@ router.post(
                 .not()
                 .isEmpty(),
             check('type', 'Type must be provided').isIn([
-                'Acoustic',
+                'Acoustic Guitar',
                 'Electric Guitar',
                 'Guitar'
-            ]) //change is as soon as you decide what you gonna sell
+            ])
         ]
     ],
     async (req, res) => {
@@ -168,9 +168,6 @@ router.delete('/', auth.authMiddleware, async (req, res) => {
         let products = await CartItem.find({ user: req.user.id });
 
         if (!products) return res.status(404).json({msg: 'Products not found'});
-
-        // if (products[0].user.toString() !== req.user.id)
-        //     return res.status(401).json({msg: 'Not authorized'});
 
         await CartItem.remove({user: req.user.id});
 

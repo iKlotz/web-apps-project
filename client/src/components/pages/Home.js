@@ -11,7 +11,6 @@ const Home = () => {
 
     useEffect(() => {
         authContext.loadUser();
-        //productContext.getProducts();
         //eslint-disable-next-line
     }, []);
     
@@ -58,7 +57,7 @@ const Home = () => {
                         <p>Number of Frets: 22</p>
                         <p>Finish: Gloss Tobaco Burst</p>
                         <p>PRICE: $1599</p>
-                        <a className="shop_now_btn" href="http://localhost:3000/store/product/5d6ffb1931717c55e8c035c5">SHOP NOW</a>
+                        <a className="shop_now_btn" href="/store">SHOP NOW</a>
                     </div>
                 </div>
             </div>

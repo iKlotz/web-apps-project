@@ -33,10 +33,10 @@ const Navbar = ({title, icon}) => {
                 <Link to='/store'> Store </Link>
             </li>
             <li className='nav-item'>
-                <Link to='/store'> Inspiration </Link>
+                <Link to='/store'> News </Link>
             </li>
             <li className='nav-item'>
-                <Link to='/store'> About Us </Link>
+                <Link to='/about'> About Us </Link>
             </li>
         </Fragment>
     );
@@ -67,10 +67,10 @@ const Navbar = ({title, icon}) => {
                 <Link to='/store'> Store </Link>
             </li>
             <li className='nav-item'>
-                <Link to='/store'> Inspiration </Link>
+                <Link to='/store'> News </Link>
             </li>
             <li className='nav-item'>
-                <Link to='/store'> About Us </Link>
+                <Link to='/about'> About Us </Link>
             </li>
         </Fragment>
     );

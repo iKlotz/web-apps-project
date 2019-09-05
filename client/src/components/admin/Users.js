@@ -25,12 +25,12 @@ const Users = () => {
                 <div className='row'>
                     {filtered !== null
                         ? filtered.map(user => (
-                            <div className='col-md-4'>
+                            <div key={user._id} className='col-md-4'>
                                 <UserItem key={user._id} user={user}/>
                             </div>
                         ))
                         : users.map(user => ( //map returns an array
-                            <div className='col-md-4'>
+                            <div key={user._id} className='col-md-4'>
                                 <UserItem key={user._id} user={user}/>
                             </div>
                         ))}

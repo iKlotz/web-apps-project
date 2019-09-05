@@ -22,7 +22,6 @@ const UserItem = ({ user }) => {
                 <Link to={{pathname: `/users/cart/${_id}`, state: {id: _id}}}
                       className="btn btn-dark btn-sm my-1"
                       onClick={() => setUsersCart(user)}
-                      // onClick={setUsersCart(user)}
                 >
                     see users cart
                 </Link>

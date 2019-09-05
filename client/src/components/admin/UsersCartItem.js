@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import ProductContext from '../../context/product/productContext';
 
 const ProductItem = ({ item }) => {
@@ -9,7 +8,7 @@ const ProductItem = ({ item }) => {
 
     const { deleteProduct, setCurrent, clearCurrent } = productContext;
 
-    const { _id, model, price, pic1, quantity } = item;
+    const { model, price, pic1, quantity } = item;
 
     return (
         <div className="card">
@@ -20,8 +19,6 @@ const ProductItem = ({ item }) => {
             />
             <div className="card-body">
                 <h5 className="card-title">{model}</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
                 <h6>Price: ${price}</h6>
                 <h6>QTY: {quantity}</h6>
             </div>

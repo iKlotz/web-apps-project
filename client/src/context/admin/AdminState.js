@@ -4,11 +4,9 @@ import adminReducer from './adminReducer';
 import axios from 'axios';
 
 import {
-    GET_PRODUCT_AND_SET_CURRENT,
     GET_USERS,
     USER_ERROR,
     ADD_PRODUCT,
-    ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -16,7 +14,8 @@ import {
     FILTER_USERS,
     CLEAR_PRODUCTS,
     CLEAR_FILTER,
-    PRODUCT_ERROR, GET_CURRENT_CART
+    PRODUCT_ERROR,
+    GET_CURRENT_CART
 } from '../types';
 
 const AdminState = props => {
@@ -64,20 +63,6 @@ const AdminState = props => {
         }
     };
 
-    const getProductAndSetCurrent = async id => {
-
-        try{
-            const res = await axios.get(`/api/products/${id}`);
-
-            dispatch({ type: GET_PRODUCT_AND_SET_CURRENT, payload: res.data });
-        } catch (err) {
-            console.log(err);
-            dispatch({
-                type: PRODUCT_ERROR,
-                payload: err.response.msg,
-            });
-        }
-    };
 
     //Add product
     const addProduct = async product => {

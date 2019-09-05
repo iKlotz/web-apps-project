@@ -6,31 +6,6 @@ import Spinner from '../layout/Spinner';
 
 
 const Products = () => {
-    // const productContext = useContext(ProductContext); //init context
-    //
-    // const {products} = productContext; //pulling out products from out context
-
-//     const productContext = useContext(ProductContext);
-//
-//     const {products, getProducts, loading} = productContext;
-//
-//     useEffect(() => {//basically fills in our products array, sending the request to the DB
-//         getProducts();
-//         // eslint-disable-next-line
-//     },[]);
-//
-//     if (products !== null && products.length === 0 && !loading) {
-//         return <h4>Store is empty...</h4>
-//     }
-//
-//     return (
-//         <div style={productStyle}>
-//             {/*{products.map(product => (*/}
-//                 {/*<ProductItem key={product._id} product={product}/>))}*/}
-//                 <h1>?</h1>
-//         </div>
-//     );
-// };
 
     const productContext = useContext(ProductContext);
 
@@ -51,12 +26,12 @@ const Products = () => {
                     <div className='row'>
                     {filtered !== null
                         ? filtered.map(product => (
-                                <div className='col-md-4'>
+                                <div key={product._id} className='col-md-4'>
                                     <ProductItem key={product._id} product={product}/>
                                 </div>
                         ))
                         : products.map(product => ( //map returns an array
-                                <div className='col-md-4'>
+                                <div key={product._id} className='col-md-4'>
                                     <ProductItem key={product._id} product={product}/>
                                 </div>
                         ))}

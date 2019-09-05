@@ -18,6 +18,7 @@ const ProductForm = () => {
                 pic1: '',
                 pic2: '',
                 pic3: '',
+                quantity: '',
                 specs: ''
             });
         }
@@ -31,6 +32,7 @@ const ProductForm = () => {
         pic1: '',
         pic2: '',
         pic3: '',
+        quantity: '',
         specs:''
     });
 

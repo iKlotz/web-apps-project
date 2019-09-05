@@ -7,7 +7,7 @@ const ProductListItem = ({ product }) => {
 
     const { deleteProduct, setCurrent, clearCurrent } = productContext;
 
-    const { _id, model, brand, type, price, pic1, pic2, pic3, specs } = product;
+    const { _id, model, brand, type, price, pic1, pic2, pic3, specs, quantity } = product;
 
     const onDelete = () => {
         deleteProduct(_id);
@@ -47,6 +47,9 @@ const ProductListItem = ({ product }) => {
                 </li>)}
                 {specs && (<li>
                     <i className="fas fa-cogs"></i>{' ' + specs}
+                </li>)}
+                {quantity && (<li>
+                    <i className="fas fa-cogs"></i>{' ' + quantity}
                 </li>)}
                 <p>
                     <button className="btn-dark btn-sm" onClick={() => setCurrent(product)}>Edit</button>

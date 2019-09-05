@@ -49,8 +49,8 @@ const CartItem = ({ product }) => {
                 <div className="col-md-8">
                     <div className="card-body">
                         <h5 className="card-title">{model}</h5>
-                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                        <p className="card-text">{brand} is known as a brand that makes an amazing guitars. That look, sound and feel amazing</p>
+                        <p className="card-text"><small className="text-muted">Take me home!</small></p>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@ const CartItem = ({ product }) => {
                     <i className="fas fa-minus-circle"/>
                 </button>
                 <input type="number"
-                       className="count text-center"
+                       className="count text-center cart-qty"
                        name="qty"
                        style={{position: 'relative'}}
                        value={quantity}
@@ -67,9 +67,6 @@ const CartItem = ({ product }) => {
                 <button className="plus bg-success text-center" onClick={()=> onPlus(product)}>
                     <i className="fas fa-plus-circle"/>
                 </button>
-                {/*<button className="btn btn-light"*/}
-                        {/*style={{position: "absolute", bottom: "15px", right: 0}}*/}
-                {/*>Update</button>*/}
                 <button className="btn btn-light"
                         onClick={onRemove}
                         style={{position: "absolute", top: 0, right: 0, borderRadius: "50%"}}>

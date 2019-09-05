@@ -54,6 +54,7 @@ router.post(
                 .isEmpty(),
             check('type', 'Type must be provided').isIn([
                 'Acoustic',
+                'Acoustic Guitar',
                 'Electric Guitar'
             ]) //change is as soon as you decide what you gonna sell
         ]
@@ -101,7 +102,7 @@ router.put('/:id',
     if (!errors.isEmpty())
         return res.status(400).json({errors: errors.array()});
 
-    const {model, type, brand, specs, price, pic1, pic2, pic3} = req.body;
+    const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
 
     // Build product object
     const productFields = {};
@@ -113,6 +114,7 @@ router.put('/:id',
     if (pic1) productFields.pic1 = pic1;
     if (pic2) productFields.pic2 = pic2;
     if (pic3) productFields.pic3 = pic3;
+    if (quantity) productFields.quantity = quantity;
 
     try {
         let product = await Product.findById(req.params.id);

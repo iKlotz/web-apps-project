@@ -4,9 +4,6 @@ import CartContext from '../../context/cart/cartContext';
 import AuthContext from '../../context/auth/authContext';
 import {Link} from "react-router-dom";
 import Spinner from '../../components/layout/Spinner';
-import {Route, Redirect} from 'react-router-dom';
-import Explorer from '../../images/explorer.jpg';
-
 const ProductCard = () => {
 
     const productContext = useContext(ProductContext); //init context
@@ -20,6 +17,7 @@ const ProductCard = () => {
     useEffect(() => {
         const id = window.location.pathname.split("/").pop(); //get id from the URL
         getProductAndSetCurrent(id);
+        // eslint-disable-next-line
     }, []);
 
     if (!current && !loading) {

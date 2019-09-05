@@ -1,15 +1,21 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const Ddos = require('ddos');
 
 const app = express();
+const ddos = new Ddos;
+
 
 // Connect Database
 connectDB();
 
+//Init ddos
+app.use(ddos.express);
+
 // Init Middleware
 app.use(express.json({ extended: false }));
 
-// // Define Routes
+// Define Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/admin', require('./routes/admin'));

@@ -15,8 +15,8 @@ const ShoppingCart = () => {
         authContext.loadUser();
         getProducts();
         setTotal();
-    //    es lint was disabled here previously
-    }, [cartTotal]);
+        // eslint-disable-next-line
+    }, []);
 
     if (products !== null && products.length === 0 && !loading) {
         return (
@@ -49,7 +49,6 @@ const ShoppingCart = () => {
                         <h5 className="card-title">Always remember!</h5>
                         <p className="card-text">You can't buy happiness, but you can buy guitars
                             which is pretty much the same thing!</p>
-                        {/*<button type="button" className="btn btn-success">PLACE ORDER</button>*/}
                         <Link to={{pathname: '/checkout'}}
                               className="btn btn-success"
                               onClick={clearCart}
