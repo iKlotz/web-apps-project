@@ -1,17 +1,21 @@
 import React, {Fragment, useContext, useEffect} from 'react';
 import ProductContext from '../../context/product/productContext';
 import CartContext from '../../context/cart/cartContext';
+import AuthContext from '../../context/auth/authContext';
 import {Link} from "react-router-dom";
 import Spinner from '../../components/layout/Spinner';
+import {Route, Redirect} from 'react-router-dom';
 import Explorer from '../../images/explorer.jpg';
 
 const ProductCard = () => {
 
     const productContext = useContext(ProductContext); //init context
     const cartContext = useContext(CartContext);
+    const authContext = useContext(AuthContext);
 
     const {current, getProductAndSetCurrent, loading} = productContext; //pulling out products from out context
     const {addProduct} = cartContext;
+    const {isAuthenticated} = authContext;
 
     useEffect(() => {
         const id = window.location.pathname.split("/").pop(); //get id from the URL
@@ -25,6 +29,7 @@ const ProductCard = () => {
     }
 
     const {model, brand, specs, price, type, pic1, pic2, pic3} = current;
+
 
     return <Fragment>
         <div>
@@ -64,12 +69,16 @@ const ProductCard = () => {
                             </li>
 
                             <div className="">
-                                <button type="button" className="btn btn-dark"  onClick={() => addProduct(current)}>
-                                    <i className="far fa-heart"></i>
-                                </button>
+                                {/*<button type="button" className="btn btn-dark"  onClick={() => addProduct(current)}>*/}
+                                    {/*<i className="far fa-heart"></i>*/}
+                                {/*</button>*/}
 
-                                <button type="button" className="btn btn-dark"  onClick={() => addProduct(current)}>
-                                    <i className="fas fa-shopping-cart"></i>
+                                <button
+                                    type="button"
+                                    className="btn btn-dark"
+                                    onClick={isAuthenticated ? () => addProduct(current)
+                                        : () => alert("Just don't forget to register/login ;)")}>
+                                    <i className="fas fa-shopping-cart"/>
                                 </button>
                             </div>
                         </ul>

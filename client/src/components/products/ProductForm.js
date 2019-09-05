@@ -41,7 +41,6 @@ const ProductForm = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        //addProduct(product);
 
         if(current === null){
             addProduct(product); //product is our state
@@ -91,7 +90,7 @@ const ProductForm = () => {
                 onChange={onChange}
             />
             <input
-                type="number"
+                type="text"
                 placeholder="Price"
                 name="price"
                 value={price}
@@ -127,7 +126,7 @@ const ProductForm = () => {
             />
 
             <input
-                type="number"
+                type="text"
                 placeholder="Add quantity"
                 name="quantity"
                 value={quantity}
