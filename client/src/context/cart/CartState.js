@@ -10,7 +10,7 @@ import {
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_PRODUCT,
-    CLEAR_PRODUCTS,
+    CLEAR_CART,
     PRODUCT_ERROR,
     SET_TOTAL
 } from '../types';
@@ -33,7 +33,7 @@ const CartState = props => {
             dispatch({
                 type: GET_PRODUCTS,
                 payload: res.data
-            }); //all the products in stock
+            });
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -78,9 +78,21 @@ const CartState = props => {
         }
     };
 
-    //Clear products
-    const clearProducts = () => {
-        dispatch({ type: CLEAR_PRODUCTS });
+    //Clear cart
+    const clearCart = async () => {
+        try{
+            await axios.delete('/api/shopping-cart/');
+
+            //dispatch({ type: DELETE_PRODUCT, payload: id });
+
+            dispatch({ type: CLEAR_CART});
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.msg
+            });
+        }
+
     };
 
 
@@ -147,7 +159,7 @@ const CartState = props => {
                 clearCurrent,
                 updateProduct,
                 getProducts,
-                clearProducts,
+                clearCart,
                 setTotal
             }}
         >

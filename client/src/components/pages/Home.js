@@ -94,7 +94,7 @@ const Home = () => {
                         <p>Neck Profile: "JEM"</p>
                         <p>Number of Frets: 24</p>
                         <p>Finish: Flowers & Shit</p>
-                        <p>PRICE: $ 2599</p>
+                        <p>PRICE: $2599</p>
                         <a className="shop_now_btn" href="/store">SHOP NOW</a>
                     </div>
                 </div>

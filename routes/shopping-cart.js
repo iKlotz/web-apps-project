@@ -24,7 +24,7 @@ router.get('/', auth.authMiddleware, async (req, res) => {
 });
 
 
-// @route    GET api/shopping-list
+// @route    GET api/shopping-list single item
 // @desc     Get product from users wish list
 // @access   Private
 router.get('/:id', async (req, res) => {
@@ -137,7 +137,7 @@ router.put('/:id', auth.authMiddleware, async (req, res) => {
     }
 });
 
-// // @route    DELETE api/products/:id
+// // @route    DELETE api/shopping-cart/:id
 // // @desc     Delete a contact
 // // @access   Private
 router.delete('/:id', auth.authMiddleware, async (req, res) => {
@@ -153,6 +153,28 @@ router.delete('/:id', auth.authMiddleware, async (req, res) => {
         await CartItem.findByIdAndRemove(req.params.id);
 
         res.json({msg: 'Product removed'});
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+
+// // @route    DELETE api/shopping-cart/
+// // @desc     Clear users cart
+// // @access   Private
+router.delete('/', auth.authMiddleware, async (req, res) => {
+    try {
+
+        let products = await CartItem.find({ user: req.user.id });
+
+        if (!products) return res.status(404).json({msg: 'Products not found'});
+
+        // if (products[0].user.toString() !== req.user.id)
+        //     return res.status(401).json({msg: 'Not authorized'});
+
+        await CartItem.remove({user: req.user.id});
+
+        res.json({msg: 'Cart is clear'});
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');

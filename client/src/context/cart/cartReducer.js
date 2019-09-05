@@ -6,7 +6,7 @@ import {
     CLEAR_CURRENT,
     UPDATE_PRODUCT,
     PRODUCT_ERROR,
-    CLEAR_PRODUCTS,
+    CLEAR_CART,
     SET_TOTAL
 } from '../types';
 
@@ -40,7 +40,7 @@ export default (state, action) => {
                 ),
                 loading: false
             };
-        case CLEAR_PRODUCTS:
+        case CLEAR_CART:
             return{
                 ...state,
                 products: null,

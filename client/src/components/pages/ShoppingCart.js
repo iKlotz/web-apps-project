@@ -1,46 +1,65 @@
 import React, {useContext, useEffect} from 'react';
-import ProductsList from '../products/ProductsList';
-import ProductForm from '../products/ProductForm';
-import ProductFilter from '../products/ProductFilter'
 import CartItems from '../cart/CartItems';
 import AuthContext from '../../context/auth/authContext';
 import CartContext from '../../context/cart/cartContext';
+import {Link} from "react-router-dom";
 
 const ShoppingCart = () => {
     const authContext = useContext(AuthContext);
     const cartContext = useContext(CartContext);
 
-    const {products, cartTotal, setTotal, getProducts} = cartContext;
+    const {products, cartTotal, setTotal, getProducts, loading, clearCart} = cartContext;
 
 
     useEffect(() => {
         authContext.loadUser();
         getProducts();
         setTotal();
-        //eslint-disable-next-line
+    //    es lint was disabled here previously
     }, [cartTotal]);
 
-    return (
-
-            <div className="row">
-                <div>
-                    <CartItems/>
-                </div>
-                <div className="col-md-5">
-                    {/*<h1>Subtotal:</h1>*/}
-                    {/*<h3>${cartTotal}</h3>*/}
-                    <div className="card">
-                        <h5 className="card-header">Subtotal: $ {cartTotal}</h5>
-                        <div className="card-body">
-                            <h5 className="card-title">We're here for you!</h5>
-                            <p className="card-text">If you need us to add present card, just so your wife don't
-                            worry that you spend to much money on guitars, just say ;)</p>
-                            <button type="button" className="btn btn-success">PLACE ORDER</button>
-                            {/*<a href="#" className="btn btn-primary">PLACE ORDER</a>*/}
-                        </div>
+    if (products !== null && products.length === 0 && !loading) {
+        return (
+            <div className="col-md-4">
+                <div className="card">
+                    <h5 className="card-header">It looks like your cart is empty...</h5>
+                    <div className="card-body">
+                        <h5 className="card-title">But don't worry!</h5>
+                        <p className="card-text">You're just one click away from buying an amazing guitar!</p>
+                        <Link to={{pathname: '/store'}}
+                              className="btn btn-success"
+                        >
+                            Go to store
+                        </Link>
                     </div>
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <div className="row">
+            <div>
+                <CartItems/>
+            </div>
+            <div className="col-md-5">
+                <div className="card">
+                    <h5 className="card-header">Subtotal: $ {cartTotal}</h5>
+                    <div className="card-body">
+                        <h5 className="card-title">Always remember!</h5>
+                        <p className="card-text">You can't buy happiness, but you can buy guitars
+                            which is pretty much the same thing!</p>
+                        {/*<button type="button" className="btn btn-success">PLACE ORDER</button>*/}
+                        <Link to={{pathname: '/checkout'}}
+                              className="btn btn-success"
+                              onClick={clearCart}
+                        >
+                            PLACE ORDER
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

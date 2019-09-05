@@ -686,12 +686,7 @@ body {
     /*background-color: #fff;*/
     /*color: #333;*/
 }
-/*==========================================
-[2. Header ]
-===========================================*/
-/*-----------------------------------------
-[2.1 Header-Top ]
-------------------------------------------*/
+
 /*.header_top {border-bottom: 1px solid #E3E3E3;}*/
 /*--------------------------------
 [2.1.1 Header-Top-Left ]
@@ -706,21 +701,8 @@ body {
     /*margin: 0;*/
     /*padding: 0;*/
 /*}*/
-/*-------------------------
-[2.1.1.1 Header-Social-Icon ]
--------------------------*/
-/*.social_icon li {margin-right: 8px;}*/
-/*.social_icon li a, .footer_icon li a, .shop_icon a {*/
-    /*background: rgb(57, 74, 95) none repeat scroll 0 0;*/
-    /*display: block;*/
-    /*height: 25px;*/
-    /*padding: 5px;*/
-    /*width: 25px;*/
-/*}*/
-/*.social_icon li a i {*/
-    /*color: rgb(255, 255, 255);*/
-    /*font-size: 14px;*/
-/*}*/
+
+
 .shop_icon span,.slide_btn:hover,.shop_now_btn:hover{background:#3a4b60;}
 .social_icon li a:hover i{opacity:.6;}
 /*-------------------------
@@ -1030,3 +1012,59 @@ input:disabled{
     font-size: 55px;
     color: #333333;
 }
+
+button.launch {
+    background-color: #F9A300;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+button.launch:hover {
+    cursor: pointer;
+    background-color: #FABD44;
+}
+button.launch {
+    background-color: #F9A300;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+button.launch:hover {
+    cursor: pointer;
+    background-color: #FABD44;
+}
+
+button.change {
+    background-color: #F88F00;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+button.change:hover {
+    cursor: pointer;
+    background-color: #F89900;
+}
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+button:focus {outline:0;}

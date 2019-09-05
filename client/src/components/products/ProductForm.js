@@ -91,7 +91,7 @@ const ProductForm = () => {
                 onChange={onChange}
             />
             <input
-                type="text"
+                type="number"
                 placeholder="Price"
                 name="price"
                 value={price}
@@ -127,7 +127,7 @@ const ProductForm = () => {
             />
 
             <input
-                type="text"
+                type="number"
                 placeholder="Add quantity"
                 name="quantity"
                 value={quantity}

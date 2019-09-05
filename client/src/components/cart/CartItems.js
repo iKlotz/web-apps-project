@@ -15,9 +15,6 @@ const CartItems = () => {
         // eslint-disable-next-line
     }, [cartTotal]);
 
-    if (products !== null && products.length === 0 && !loading) {
-        return <h4>The cart is empty...</h4>
-    }
 
     return (
             <div className='container'>
