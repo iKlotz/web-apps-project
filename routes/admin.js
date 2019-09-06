@@ -6,26 +6,6 @@ const Product = require('../models/Product');
 const CartItem = require('../models/CartItem');
 const User = require('../models/User');
 
-// @route    GET api/shopping-cart
-// @desc     Get all products in users shopping cart
-// @access   Private
-// router.get('/manage-products', auth.adminMiddleware, async (req, res) => {
-//     try {
-//         //this line sorts by user ID, add auth before async to use it
-//         const products = await CartItem.find({ }).sort({
-//             // const products = await CartItem.find().sort({
-//             date: -1
-//         });
-//
-//         // _.groupBy(products, 'username')
-//         res.json(products);
-//     } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send('Server Error');
-//     }
-// });
-
-
 // @route    GET admin/users
 // @desc     Get all users
 // @access   Public
@@ -60,7 +40,7 @@ router.get('/users/:id', async (req, res) => {
             date: -1
         });
 
-        console.log(req.params.id);
+        //console.log(req.params.id);
 
         if (!items) return res.status(404).json({msg: 'Users cart is empty'});
 
@@ -187,3 +167,23 @@ router.delete('/:id', auth.adminMiddleware, async (req, res) => {
     }
 });
 module.exports = router;
+
+// @route    GET api/shopping-cart
+// @desc     Get all products in users shopping cart
+// @access   Private
+// router.get('/manage-products', auth.adminMiddleware, async (req, res) => {
+//     try {
+//         //this line sorts by user ID, add auth before async to use it
+//         const products = await CartItem.find({ }).sort({
+//             // const products = await CartItem.find().sort({
+//             date: -1
+//         });
+//
+//         // _.groupBy(products, 'username')
+//         res.json(products);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server Error');
+//     }
+// });
+

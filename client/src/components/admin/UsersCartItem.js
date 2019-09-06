@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import ProductContext from '../../context/product/productContext';
+//import ProductContext from '../../context/product/productContext';
 
 const ProductItem = ({ item }) => {
 
-    const productContext = useContext(ProductContext);
+    //const productContext = useContext(ProductContext);
 
-    const { deleteProduct, setCurrent, clearCurrent } = productContext;
+    //const { deleteProduct, setCurrent, clearCurrent } = productContext;
 
     const { model, price, pic1, quantity } = item;
 
@@ -27,7 +27,7 @@ const ProductItem = ({ item }) => {
 };
 
 ProductItem.propTypes = {
-    product:PropTypes.object.isRequired,
+    item:PropTypes.object.isRequired,
 };
 export default ProductItem;
 

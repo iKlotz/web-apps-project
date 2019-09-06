@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import ProductContext from '../../context/product/productContext';
-import ProductFilterNavbar from '../../components/products/ProductFilterNavbar';
-
 
 const Navbar = ({title, icon}) => {
     const authContext = useContext(AuthContext);
@@ -179,7 +177,6 @@ Navbar.propTypes = {
 
 Navbar.defaultProps = {
     title: 'Guitar World',
-    // icon: "fas fa-skull-crossbones"
     icon: "fas fa-fire-alt"
 };
 

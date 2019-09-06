@@ -10,11 +10,11 @@ const CartItem = ({ product }) => {
 
     const productContext = useContext(ProductContext);
 
-    const { deleteProduct, clearCurrent, current, setTotal, updateProduct} = cartContext;
+    const { deleteProduct, setTotal, updateProduct} = cartContext;
 
     const { setCurrent } = productContext;
 
-    const { _id, model, brand, type, price, pic1, pic2, pic3, specs, quantity } = product;
+    const { _id, model, brand, pic1, quantity } = product;
 
 
     const onRemove = () => {

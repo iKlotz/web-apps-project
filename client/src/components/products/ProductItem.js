@@ -7,9 +7,9 @@ const ProductItem = ({ product }) => {
 
     const productContext = useContext(ProductContext);
 
-    const { deleteProduct, setCurrent, clearCurrent } = productContext;
+    const { setCurrent } = productContext;
 
-    const { _id, model, brand, type, price, pic1, pic2, pic3, specs } = product;
+    const { _id, model, pic1 } = product;
 
     return (
         <div className="card">

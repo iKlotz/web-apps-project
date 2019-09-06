@@ -1,5 +1,4 @@
 import React, {useEffect, useContext} from 'react';
-import ProductFilter from '../products/ProductFilter';
 import Users from "../admin/Users";
 import UserFilter from "../admin/UserFilter";
 import AuthContext from "../../context/auth/authContext";

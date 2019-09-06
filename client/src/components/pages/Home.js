@@ -3,11 +3,9 @@ import Explorer from "../../images/explorer.jpg";
 import Telecaster from '../../images/telecaster.jpg';
 import Ibanez from '../../images/ibanez.jpg';
 import AuthContext from '../../context/auth/authContext';
-import ProductContext from '../../context/product/productContext';
 
 const Home = () => {
     const authContext = useContext(AuthContext);
-    const productContext = useContext(ProductContext);
 
     useEffect(() => {
         authContext.loadUser();
@@ -20,7 +18,7 @@ const Home = () => {
             <div className="padding_right main_single_product">
                 <div className="single_product">
                     <div className="product_img">
-                        <img className='w-100' src={Explorer} alt="EXPLORER IMAGE"/>
+                        <img className='w-100' src={Explorer} alt=""/>
                     </div>
                     <div className="product_text dark_product">
                         <h1>GIBSON</h1>
@@ -30,7 +28,7 @@ const Home = () => {
             <div className="padding_left main_single_product">
                 <div className="single_product single_product_two">
                     <div className="product_img">
-                        <img className='w-100' src={Explorer} alt="DARK BLUE IMAGE"/>
+                        <img className='w-100' src={Explorer} alt=""/>
                     </div>
                     <div className="product_text_two product_text">
                         <h1>Explorer</h1>
@@ -47,7 +45,7 @@ const Home = () => {
             <div className="padding_right main_single_product section-padding-top">
                 <div className="single_product single_product_two">
                     <div className="product_img tre_shirt_2">
-                        <img className='w-100' src={Telecaster} alt="DARK BLUE IMAGE"/>
+                        <img className='w-100' src={Telecaster} alt=""/>
                     </div>
                     <div className="product_text_two tre_shirt_2_text product_text">
                         <h1>FENDER</h1>
@@ -64,7 +62,7 @@ const Home = () => {
             <div className="padding_left main_single_product section-padding-top">
                 <div className="single_product">
                     <div className="product_img tre_shirt_2">
-                        <img className='w-100' src={Telecaster} alt="DARK BLUE IMAGE"/>
+                        <img className='w-100' src={Telecaster} alt=""/>
                     </div>
                     <div className="product_text dark_product">
                         <h1>TELECASTER</h1>
@@ -74,7 +72,7 @@ const Home = () => {
             <div className="padding_right main_single_product section-padding-top">
                 <div className="single_product">
                     <div className="product_img tre_shirt_3">
-                        <img className='w-100' src={Ibanez} alt="DARK BLUE IMAGE"/>
+                        <img className='w-100' src={Ibanez} alt=""/>
                     </div>
                     <div className="product_text dark_product">
                         <h1>IBANEZ</h1>
@@ -84,7 +82,7 @@ const Home = () => {
             <div className="padding_left main_single_product section-padding-top">
                 <div className="single_product single_product_two">
                     <div className="product_img tre_shirt_3">
-                        <img className='w-100' src={Ibanez} alt="DARK BLUE IMAGE"/>
+                        <img className='w-100' src={Ibanez} alt=""/>
                     </div>
                     <div className="product_text_two product_text">
                         <h1>JEM 777</h1>

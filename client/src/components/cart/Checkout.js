@@ -10,12 +10,12 @@ const Checkout = () => {
     const {products, cartTotal, setTotal, getProducts, loading} = cartContext;
 
 
-    // useEffect(() => {
-    //     authContext.loadUser();
-    //     getProducts();
-    //     setTotal();
-    //     //    es lint was disabled here previously
-    // }, []);
+    useEffect(() => {
+        authContext.loadUser();
+        getProducts();
+        setTotal();
+        //    es lint was disabled here previously
+    }, []);
 
 
     return (

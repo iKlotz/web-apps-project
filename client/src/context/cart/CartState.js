@@ -58,7 +58,7 @@ const CartState = props => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg //changed from response
+                payload: err.data
             });
         }
     };
@@ -73,7 +73,7 @@ const CartState = props => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.data.response.msg
             });
         }
     };
@@ -82,14 +82,11 @@ const CartState = props => {
     const clearCart = async () => {
         try{
             await axios.delete('/api/shopping-cart/');
-
-            //dispatch({ type: DELETE_PRODUCT, payload: id });
-
             dispatch({ type: CLEAR_CART});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.data.response.msg
             });
         }
 
@@ -108,7 +105,6 @@ const CartState = props => {
 
     //Set carts total value
     const setTotal = async () => {
-        //dispatch({ type: SET_TOTAL });
         try{
             const res = await axios.get('/api/shopping-cart');
 
@@ -119,7 +115,7 @@ const CartState = props => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.data.response.msg
             });
         }
     };
@@ -141,7 +137,7 @@ const CartState = props => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.data.response.msg
             });
         }
     };

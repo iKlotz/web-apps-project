@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const AdminRoute = ({component: Component, ...rest}) => {
     const authContext = useContext(AuthContext);
-    const {isAdmin, isAuthenticated, loading} = authContext;
+    const {isAdmin, loading} = authContext;
 
     return (
         <Route {...rest} render={props => (!loading && !isAdmin) ? (

@@ -139,7 +139,7 @@ const ProductForm = () => {
                 <input
                     type="submit"
                     value={current === null ? 'Add Product' : 'Update Product' }
-                    className="btn btn-primary btn-block"/>
+                    className="btn btn-dark btn-block"/>
             </div>
             {current && <div>
                 <button className="btn btn-light btn-block" onClick={clearAll}>

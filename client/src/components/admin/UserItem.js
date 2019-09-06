@@ -28,10 +28,10 @@ const UserItem = ({ user }) => {
             </div>
         </div>
     );
-}
+};
 
 UserItem.propTypes = {
-    product:PropTypes.object.isRequired,
+    user:PropTypes.object.isRequired,
 };
 export default UserItem;
 

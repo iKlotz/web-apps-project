@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import AdminContext from '../../context/admin/adminContext';
 import UserItem from './UserItem';
 import Spinner from '../layout/Spinner';

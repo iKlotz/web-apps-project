@@ -2,9 +2,6 @@
 
 /* Global Styles */
 :root {
-    /*--primary-color: #003699;*/
-    /*--primary-color: #262626;*/
-    /*--primary-color: #3a4b60;*/
     --primary-color: #2f3640;
     --dark-color: #333333;
     --light-color: #f4f4f4;
@@ -18,13 +15,6 @@
     padding: 0;
 }
 
-/*body {*/
-    /*font-family: 'Roboto', sans-serif;*/
-    /*font-size: 1rem;*/
-    /*line-height: 1.6;*/
-    /*background-color: #fff;*/
-    /*color: #333;*/
-/*}*/
 
 a {
     color: var(--primary-color);
@@ -573,30 +563,7 @@ my-search-box{
     font-weight: bold;
 }
 
-/*---------------------------------------------------------------------------------*/
 
-/**{transition: all 300ms ease-out 0s;}*/
-/*a:focus {*/
-    /*outline:0px solid;*/
-    /*text-decoration:none;*/
-/*}*/
-/*ul,ul li{*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-/*}*/
-/*.float-left{float:left;}*/
-/*.float-right{float:right;}*/
-/*img {*/
-    /*max-width:100%;*/
-    /*height:auto;*/
-/*}*/
-/*h1, h2, h3, h4, h5, h6 ,a,.product_text p,.single_review p,.compare_menu ul li a,th,.features_text h5,.disclaimer h5,tr td:first-child,.subscribe_btn,.footer_link p,.tp-caption  {*/
-    /*!*text-transform: uppercase;*!*/
-/*}*/
-/*h1, h2, h3, h4, h5, h6 {*/
-    /*margin:0;*/
-    /*padding:0;*/
-/*}*/
 h1, h2, h5, a, .header_top_right ul li a:hover,.mainmenu a:hover, .choose_text:hover.choose_text i, .choose_active.choose_text i, .choose_text:hover.choose_text h5 a, .choose_active.choose_text h5 a, .social_icon li a i, .review_icon i, .compare_menu ul li a,th, .features_text  h5, .disclaimer h5, .single_features i, .single_features i.flaticon-lightbulbs, .single_features i.flaticon-tshirt17, .disclaimer i, .newsletter input{
     color:#3a4b60;
 }
@@ -657,18 +624,6 @@ a:hover{text-decoration:none;}
 .section-padding{padding:40px 0;}
 .section-padding-top{padding-top:80px;}
 
-/*============= ScrollUp =============*/
-/*#scrollUp {*/
-    /*background-color: #202B30;*/
-    /*padding: 8px 10px;*/
-    /*right: 25px;*/
-    /*text-decoration: none;*/
-    /*top: 77.6%;*/
-/*}*/
-/*#scrollUp:hover{opacity:.6;}*/
-/*------------------------------------------------------------------
-[1. body ]
---------------------------------------------------------------------*/
 body {
     /*color: #fff;*/
     font-family: 'Roboto', sans-serif;
@@ -678,154 +633,12 @@ body {
     margin: 0;
     font-weight:400;
     padding: 0;
-
-
-    /*font-family: 'Roboto', sans-serif;*/
-    /*font-size: 1rem;*/
-    /*line-height: 1.6;*/
-    /*background-color: #fff;*/
-    /*color: #333;*/
 }
-
-/*.header_top {border-bottom: 1px solid #E3E3E3;}*/
-/*--------------------------------
-[2.1.1 Header-Top-Left ]
----------------------------------*/
-/*.header_top_left,.header_top_right {padding: 10px 0;}*/
-/*.header_top_left.float-left {*/
-    /*position:relative;*/
-    /*z-index:2;*/
-/*}*/
-/*.header_top_left ul ,.header_top_right ul {*/
-    /*list-style: outside none none;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-/*}*/
 
 
 .shop_icon span,.slide_btn:hover,.shop_now_btn:hover{background:#3a4b60;}
 .social_icon li a:hover i{opacity:.6;}
-/*-------------------------
-[2.1.1.2 Header-Other-Icon ]
--------------------------*/
-/*.social_others  li a {margin-left: 10px;}*/
-/*.social_others li {margin-left:10px;}*/
-/*.social_others a,.header_top_right ul li a{*/
-    /*color: rgb(135, 135, 135);*/
-    /*font-size: 13px;*/
-    /*text-transform: inherit;*/
-/*}*/
-/*.header_top_right.text-right a,.shop_icon {margin-right: 10px;}*/
-/*.social_others a i {*/
-    /*color: #3a4b60;*/
-    /*font-size: 15px;*/
-    /*margin-right: 5px;*/
-/*}*/
-/*--------------------------------
-[2.1.2 Header-Top-Right ]
----------------------------------*/
-/*.header_top_right.text-right li{padding-top:4px;}*/
-/*.searchbox::-webkit-input-placeholder,*/
-/*.searchbox-input:-moz-placeholder,*/
-/*.searchbox-input::-moz-placeholder,*/
-/*.searchbox-input:-ms-input-placeholder {*/
-/*color: #3a4b60;*/
-/*}*/
 
-/*.searchbox-icon,*/
-/*.searchbox-submit {*/
-    /*background: rgba(0, 0, 0, 0) none repeat scroll 0 0;*/
-    /*border: medium none;*/
-    /*color: #3a4b60;*/
-    /*cursor: pointer;*/
-    /*display: block;*/
-    /*font-size: 18px;*/
-    /*line-height: 32px;*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*top: 0;*/
-    /*width: 25px;*/
-/*}*/
-
-/*.searchbox-input {*/
-    /*border: medium none;*/
-    /*color: rgb(0, 0, 0);*/
-    /*font-size: 16px;*/
-    /*height: 32px;*/
-    /*padding: 0 55px 0 20px;*/
-    /*right: 0;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-    /*box-shadow: none;*/
-/*}*/
-
-/*li.searchbox.searchbox-open {padding-top: 0;}*/
-/*.searchbox-input::-webkit-input-placeholder,*/
-/*.searchbox-input:-moz-placeholder,*/
-/*.searchbox-input::-moz-placeholder,*/
-/*.searchbox-input:-ms-input-placeholder {color: #3a4b60;}*/
-/*.searchbox-icon,*/
-/*.searchbox-submit {*/
-    /*background: rgba(0, 0, 0, 0) none repeat scroll 0 0;*/
-    /*border: medium none;*/
-    /*color: #3a4b60;*/
-    /*cursor: pointer;*/
-    /*display: block;*/
-    /*font-size: 18px;*/
-    /*line-height: 32px;*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*top: 0;*/
-    /*width:25px;*/
-/*}*/
-/*.searchbox-open {*/
-    /*border: 1px solid #3a4b60;*/
-    /*width: 50%;*/
-/*}*/
-
-/*----------------------------------------*/
-/*.searchbox-open span {*/
-/*background: #3a4b60;*/
-/*transition: width 0.3s ease 0s;*/
-/*width: 50px;*/
-/*height: 35px;*/
-/*}*/
-/*-------------------------------
-[2.2 Mainmenu ]
---------------------------------*/
-/*.mobile-menu-area{display:none;}*/
-/*.mainmenu, .logo {padding: 0px 0;}*/
-/*.logo a {*/
-    /*padding: 5px 0;*/
-    /*display: block;*/
-/*}*/
-/*.mainmenu a {*/
-    /*font-size: 14px;*/
-    /*line-height: 16px;*/
-    /*padding: 10px 15px;*/
-    /*margin-left: 5px;*/
-    /*color:rgb(135, 135, 135);*/
-/*}*/
-/*.shop_icon span {*/
-    /*font-size: 10px;*/
-    /*height: 20px;*/
-    /*padding-top: 2px;*/
-    /*position: absolute;*/
-    /*right: -10px;*/
-    /*top: -3px;*/
-    /*width: 20px;*/
-/*}*/
-/*.shop_icon a {*/
-    /*background: rgba(0, 0, 0, 0) none repeat scroll 0 0;*/
-    /*border: 1px solid rgb(57, 74, 95);*/
-    /*height: 30px;*/
-    /*padding: 5px !important;*/
-    /*width: 30px;*/
-/*}*/
-/*.mainmenu a i {top: 0;}*/
-/*.mainmenu a:hover i {top: 5px;}*/
-/*.guarantee_text p {padding-bottom: 20px;}*/
-/*.footer_link li{margin-bottom: 20px;}*/
 /*==========================================
 [3. Slider-Section ]
 ===========================================*/
