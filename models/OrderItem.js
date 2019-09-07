@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const WishListItemSchema = new Schema({
+const OrderItemSchema = new Schema({
     user: { //relationship between a product and user
         type: Schema.Types.ObjectId,
         ref: 'users'
@@ -45,6 +45,6 @@ const WishListItemSchema = new Schema({
         type: Date,
         default: Date.now
     }
-}, { collection: 'wish-list'});
+}, { collection: 'orders'});
 
-module.exports = mongoose.model('WishListItem', WishListItemSchema);
+module.exports = mongoose.model('OrderItem', OrderItemSchema);

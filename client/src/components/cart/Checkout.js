@@ -14,7 +14,7 @@ const Checkout = () => {
         authContext.loadUser();
         getProducts();
         setTotal();
-        //    es lint was disabled here previously
+        //eslint-disable-next-line
     }, []);
 
 

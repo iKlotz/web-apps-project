@@ -7,7 +7,7 @@ const UserItem = ({ user }) => {
 
     const adminContext = useContext(AdminContext);
 
-    const { setCurrent, users } = adminContext;
+    const { setCurrent} = adminContext;
 
     const { _id, firstname, lastname } = user;
 

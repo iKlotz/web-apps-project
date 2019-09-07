@@ -52,55 +52,56 @@ router.get('/users/:id', async (req, res) => {
 });
 
 
-// @route    POST api/products
-// @desc     Add new product
+// @route    POST api/admin/orders
+// @desc     Add orders
 // @access   Private
-router.post(
-    '/',
-    [
-        auth.adminMiddleware,
-        [
-            check('model', 'Model is required')
-                .not()
-                .isEmpty(),
-            check('type', 'Type must be provided').isIn([
-                'Acoustic',
-                'Electric Guitar'
-            ]) //change is as soon as you decide what you gonna sell
-        ]
-    ],
-    async (req, res) => {
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            return res.status(400).json({errors: errors.array()});
-        }
-
-        const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
-
-        try {
-            const newProduct = new Product({
-                model,
-                brand,
-                specs,
-                price,
-                type,
-                pic1,
-                pic2,
-                pic3,
-                quantity,
-                user: req.user.id
-            });
-
-            const product = await newProduct.save();
-
-            res.json(product);
-        } catch (err) {
-            console.error(err.message);
-            res.status(500).send('Server Error');
-        }
-    }
-);
+// router.post(
+//     '/',
+//     [
+//         auth.adminMiddleware,
+//         [
+//             check('model', 'Model is required')
+//                 .not()
+//                 .isEmpty(),
+//             check('type', 'Type must be provided').isIn([
+//                 'Acoustic',
+//                 'Electric Guitar'
+//             ])
+//         ]
+//     ],
+//     async (req, res) => {
+//         const errors = validationResult(req);
+//
+//         if (!errors.isEmpty()) {
+//             return res.status(400).json({errors: errors.array()});
+//         }
+//
+//
+//         const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
+//
+//         try {
+//             const newProduct = new Product({
+//                 model,
+//                 brand,
+//                 specs,
+//                 price,
+//                 type,
+//                 pic1,
+//                 pic2,
+//                 pic3,
+//                 quantity,
+//                 user: req.user.id
+//             });
+//
+//             const product = await newProduct.save();
+//
+//             res.json(product);
+//         } catch (err) {
+//             console.error(err.message);
+//             res.status(500).send('Server Error');
+//         }
+//     }
+// );
 
 // @route    PUT api/products/:id
 // @desc     Update a product

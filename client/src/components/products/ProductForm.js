@@ -76,6 +76,7 @@ const ProductForm = () => {
                 name="model"
                 value={model}
                 onChange={onChange}
+                required
             />
             <input
                 type="text"
@@ -83,6 +84,7 @@ const ProductForm = () => {
                 name="brand"
                 value={brand}
                 onChange={onChange}
+                required
             />
             <input
                 type="text"
@@ -90,6 +92,7 @@ const ProductForm = () => {
                 name="type"
                 value={type}
                 onChange={onChange}
+                required
             />
             <input
                 type="text"
@@ -97,6 +100,7 @@ const ProductForm = () => {
                 name="price"
                 value={price}
                 onChange={onChange}
+                required
             />
             <input
                 type="text"
@@ -111,6 +115,7 @@ const ProductForm = () => {
                 name="pic2"
                 value={pic2}
                 onChange={onChange}
+                reauired
             />
             <input
                 type="text"
@@ -118,6 +123,7 @@ const ProductForm = () => {
                 name="pic3"
                 value={pic3}
                 onChange={onChange}
+                required
             />
             <input
                 type="text"
@@ -125,6 +131,7 @@ const ProductForm = () => {
                 name="specs"
                 value={specs}
                 onChange={onChange}
+                required
             />
 
             <input
@@ -133,6 +140,7 @@ const ProductForm = () => {
                 name="quantity"
                 value={quantity}
                 onChange={onChange}
+                required
             />
 
             <div>

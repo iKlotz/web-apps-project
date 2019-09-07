@@ -6,7 +6,7 @@ import axios from 'axios';
 import {
     GET_USERS,
     USER_ERROR,
-    ADD_PRODUCT,
+   // ADD_PRODUCT,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -15,7 +15,7 @@ import {
     CLEAR_PRODUCTS,
     CLEAR_FILTER,
     PRODUCT_ERROR,
-    GET_CURRENT_CART
+    GET_CURRENT_CART, ADD_ORDERS
 } from '../types';
 
 const AdminState = props => {
@@ -23,6 +23,7 @@ const AdminState = props => {
         users: null,
         current: null,
         currentCart: null,
+        orders: null,
         filtered: null,
         error: null
     };
@@ -65,24 +66,44 @@ const AdminState = props => {
 
 
     //Add product
-    const addProduct = async product => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+    // const addProduct = async product => {
+    //     const config = {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     };
+    //
+    //     try{
+    //         const res = await axios.post('/api/products', product, config);
+    //
+    //         dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
+    //     } catch (err) {
+    //         dispatch({
+    //             type: PRODUCT_ERROR,
+    //             payload: err.response.msg
+    //         });
+    //     }
+    // };
 
-        try{
-            const res = await axios.post('/api/products', product, config);
-
-            dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
-        } catch (err) {
-            dispatch({
-                type: PRODUCT_ERROR,
-                payload: err.response.msg
-            });
-        }
-    };
+    //Add product
+    // const addOrders = async orders => {
+    //     const config = {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     };
+    //
+    //     try{
+    //         const res = await axios.post('/api/admin/orders', orders, config);
+    //
+    //         dispatch({ type: ADD_ORDERS, payload: res.data });
+    //     } catch (err) {
+    //         dispatch({
+    //             type: PRODUCT_ERROR,
+    //             payload: err.response.msg
+    //         });
+    //     }
+    // };
 
 
 
@@ -159,7 +180,7 @@ const AdminState = props => {
                 filtered: state.filtered,
                 error: state.error,
                 currentCart: state.currentCart,
-                addProduct,
+                orders: state.orders,
                 deleteProduct,
                 setCurrent,
                 clearCurrent,
@@ -168,7 +189,7 @@ const AdminState = props => {
                 clearFilter,
                 getUsers,
                 getCurrentCart,
-                clearProducts
+                clearProducts,
             }}
         >
             {props.children}

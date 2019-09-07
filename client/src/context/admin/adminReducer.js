@@ -5,7 +5,7 @@ import {
     FILTER_USERS,
     CLEAR_FILTER,
     USER_ERROR,
-    GET_CURRENT_CART
+    GET_CURRENT_CART,
 } from '../types';
 
 export default (state, action) => {
@@ -18,7 +18,7 @@ export default (state, action) => {
             };
         case GET_USERS:
             return{
-                ...state, //state is immutable
+                ...state,
                 users: action.payload,
                 loading: false
             };

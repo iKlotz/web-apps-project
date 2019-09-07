@@ -18,6 +18,9 @@ const Readme = () => {
                     About us – just a page to make the website look less empty.
                 </li>
                 <li>
+                    News – same as above.
+                </li>
+                <li>
                     Card screen for individual product, everything is very straight forward.
                 </li>
                 <li>
@@ -37,6 +40,7 @@ const Readme = () => {
             <div className="container">
                 <ol>‘/’ – home screen.</ol>
                 <ol>‘/about’ – about us screen (information about the store)</ol>
+                <ol>‘/news’ – boring page just to make a website look less empty</ol>
                 <ol>‘/store’ – store itself</ol>
                 <ol>‘/store/product/:id’ – specific product in the store</ol>
                 <ol>‘/login’ – login form</ol>
@@ -47,6 +51,7 @@ const Readme = () => {
                 <ol>‘/shopping-cart’ – screen where each user can see its cart content. </ol>
                 <ol>‘/checkout’ – a checkout screen.</ol>
             </div>
+            <h4>Please note to login as admin, use email: admin@gmail.com password: '123456' </h4>
             <h4>Security:</h4>
             <p>
                 Ddos library against dos attacs.
