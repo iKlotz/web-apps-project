@@ -14,9 +14,9 @@ const CartCheckout = () => {
         authContext.loadUser();
         getProducts();
         setTotal();
-        //    es lint was disabled here previously
-    }, [cartTotal]);
-
+        //cart total
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Checkout />

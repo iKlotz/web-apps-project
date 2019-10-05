@@ -38,7 +38,10 @@ const Home = () => {
                         <p>Number of Frets: 22</p>
                         <p>Finish: Gloss Nitrocellulose Lacquer</p>
                         <p>PRICE: $2099</p>
-                        <a className="shop_now_btn" href="http://localhost:3000/store/product/5d6ff8b4d21f2830d827db03">SHOP NOW</a>
+                        <a className="shop_now_btn"
+                           href="http://localhost:3000/store/product/5d6ff8b4d21f2830d827db03"
+                        >SHOP NOW
+                        </a>
                     </div>
                 </div>
             </div>

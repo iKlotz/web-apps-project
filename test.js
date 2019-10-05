@@ -184,14 +184,14 @@ const deleteProduct = async tokenAndId => {
 
 
 /*
-register user, and add an item to it's shopping cart
+register user, and add an item to his/her shopping cart
  */
 
 const registrationTest = () => register(formData)
     .then((token)=> addProduct(token))
     .then((product)=> {
         if(product.brand === brand && product.model === model){
-         console.log("Registration test ended");
+         console.log("Registration test ended.");
          console.log("**************************************\n");
         }
     })
@@ -204,7 +204,7 @@ const adminTest = () => loadAdmin()
     .then((tokenAndProduct) => updateProduct(tokenAndProduct))
     .then((tokenAndId)=>deleteProduct(tokenAndId))
     //returns a token and an object that was added to the store
-    .then(()=> console.log("Test ended"));
+    .then(()=> console.log("Test ended."));
 
 registrationTest().then(adminTest);
 
