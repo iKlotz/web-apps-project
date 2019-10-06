@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const OrderItemSchema = new Schema({
-    user: { //relationship between a product and user
+    user: { //relationship between a product and a user
         type: Schema.Types.ObjectId,
         ref: 'users'
-    },//refers to users
+    },
     model: {
         type: String,
         required: true
@@ -40,7 +40,6 @@ const OrderItemSchema = new Schema({
         type: Number,
         value: 1
     },
-
     date: {
         type: Date,
         default: Date.now

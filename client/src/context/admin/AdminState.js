@@ -6,7 +6,6 @@ import axios from 'axios';
 import {
     GET_USERS,
     USER_ERROR,
-   // ADD_PRODUCT,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -15,7 +14,8 @@ import {
     CLEAR_PRODUCTS,
     CLEAR_FILTER,
     PRODUCT_ERROR,
-    GET_CURRENT_CART, ADD_ORDERS
+    GET_CURRENT_CART,
+    ADD_ORDERS
 } from '../types';
 
 const AdminState = props => {
