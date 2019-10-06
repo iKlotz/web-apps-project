@@ -2,14 +2,17 @@ import React, {useContext, useEffect} from 'react';
 import CartItems from '../cart/CartItems';
 import AuthContext from '../../context/auth/authContext';
 import CartContext from '../../context/cart/cartContext';
+import OrderContext from '../../context/order/orderContext';
 import {Link} from "react-router-dom";
 
 const ShoppingCart = () => {
     const authContext = useContext(AuthContext);
     const cartContext = useContext(CartContext);
+    const orderContext = useContext(OrderContext);
 
     const {products, cartTotal, setTotal, getProducts, loading, clearCart} = cartContext;
 
+    const {addProducts} = orderContext;
 
     useEffect(() => {
         authContext.loadUser();
@@ -17,6 +20,11 @@ const ShoppingCart = () => {
         setTotal();
         // eslint-disable-next-line
     }, []);
+
+    const addOrderAndClearCart = async () => {
+        await addProducts(products);
+        clearCart();
+    };
 
     if (products !== null && products.length === 0 && !loading) {
         return (
@@ -51,7 +59,7 @@ const ShoppingCart = () => {
                             which is pretty much the same thing!</p>
                         <Link to={{pathname: '/checkout'}}
                               className="btn btn-success"
-                              onClick={clearCart}
+                              onClick={addOrderAndClearCart}
                         >
                             PLACE ORDER
                         </Link>
