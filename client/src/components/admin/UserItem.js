@@ -1,15 +1,15 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import AdminContext from '../../context/admin/adminContext';
 
-const UserItem = ({ user }) => {
+const UserItem = ({user}) => {
 
     const adminContext = useContext(AdminContext);
 
-    const { setCurrent} = adminContext;
+    const {setCurrent} = adminContext;
 
-    const { _id, firstname, lastname } = user;
+    const {_id, firstname, lastname} = user;
 
     const setUsersCart = (user) => {
         setCurrent(user);
@@ -25,7 +25,7 @@ const UserItem = ({ user }) => {
                 >
                     see users cart
                 </Link>
-                <Link to={{pathname: `/users/cart/${_id}`, state: {id: _id}}}
+                <Link to={{pathname: `/users/orders/${_id}`, state: {id: _id}}}
                       className="btn btn-dark btn-sm my-1"
                       onClick={() => setUsersCart(user)}
                 >
@@ -37,7 +37,7 @@ const UserItem = ({ user }) => {
 };
 
 UserItem.propTypes = {
-    user:PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
 };
 export default UserItem;
 

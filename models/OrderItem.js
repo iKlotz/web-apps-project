@@ -40,6 +40,9 @@ const OrderItemSchema = new Schema({
         type: Number,
         value: 1
     },
+    status:{
+      type: String,
+    },
     date: {
         type: Date,
         default: Date.now

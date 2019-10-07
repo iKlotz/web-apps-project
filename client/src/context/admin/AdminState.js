@@ -15,6 +15,7 @@ import {
     CLEAR_FILTER,
     PRODUCT_ERROR,
     GET_CURRENT_CART,
+    GET_CURRENT_ORDERS,
     ADD_ORDERS
 } from '../types';
 
@@ -32,7 +33,7 @@ const AdminState = props => {
 
     //Get Users
     const getUsers = async () => {
-        try{
+        try {
             const res = await axios.get('/api/admin/users');
 
             dispatch({
@@ -49,11 +50,28 @@ const AdminState = props => {
 
     //Get Current Cart
     const getCurrentCart = async id => {
-        try{
+        try {
             const res = await axios.get(`/api/admin/users/${id}`);
 
             dispatch({
                 type: GET_CURRENT_CART,
+                payload: res.data
+            });
+        } catch (err) {
+            dispatch({
+                type: USER_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
+    //Get current users orders
+    const getCurrentOrders = async id => {
+        try {
+            const res = await axios.get(`/api/admin/users/orders/${id}`);
+
+            dispatch({
+                type: GET_CURRENT_ORDERS,
                 payload: res.data
             });
         } catch (err) {
@@ -106,41 +124,39 @@ const AdminState = props => {
     // };
 
 
-
     //Delete product
-    const deleteProduct = async id => {
-
-        try{
-            await axios.delete(`/api/products/${id}`);
-
-            dispatch({ type: DELETE_PRODUCT, payload: id });
-        } catch (err) {
-            dispatch({
-                type: PRODUCT_ERROR,
-                payload: err.response.msg
-            });
-        }
-    };
+    // const deleteProduct = async id => {
+    //
+    //     try{
+    //         await axios.delete(`/api/products/${id}`);
+    //
+    //         dispatch({ type: DELETE_PRODUCT, payload: id });
+    //     } catch (err) {
+    //         dispatch({
+    //             type: PRODUCT_ERROR,
+    //             payload: err.response.msg
+    //         });
+    //     }
+    // };
 
     //Clear products
-    const clearProducts = () => {
-        dispatch({ type: CLEAR_PRODUCTS });
-    };
+    // const clearProducts = () => {
+    //     dispatch({ type: CLEAR_PRODUCTS });
+    // };
 
 
     //Set current
     const setCurrent = user => {
-        dispatch({ type: SET_CURRENT, payload: user });
+        dispatch({type: SET_CURRENT, payload: user});
     };
 
     //Clear current
     const clearCurrent = () => {
-        dispatch({ type: CLEAR_CURRENT });
+        dispatch({type: CLEAR_CURRENT});
     };
 
     //Update product
     const updateProduct = async product => {
-
 
         const config = {
             headers: {
@@ -148,10 +164,10 @@ const AdminState = props => {
             }
         };
 
-        try{
+        try {
             const res = await axios.put(`/api/products/${product._id}`, product, config);
 
-            dispatch({ type: UPDATE_PRODUCT, payload: res.data });
+            dispatch({type: UPDATE_PRODUCT, payload: res.data});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -162,14 +178,13 @@ const AdminState = props => {
 
     //Filter
     const filterUsers = text => {
-        dispatch({ type: FILTER_USERS, payload: text });
+        dispatch({type: FILTER_USERS, payload: text});
     };
 
     //Clear Filter
     const clearFilter = () => {
-        dispatch({ type: CLEAR_FILTER }); //set back to default which is null
+        dispatch({type: CLEAR_FILTER}); //set back to default which is null
     };
-
 
 
     return (
@@ -181,7 +196,7 @@ const AdminState = props => {
                 error: state.error,
                 currentCart: state.currentCart,
                 orders: state.orders,
-                deleteProduct,
+                //deleteProduct,
                 setCurrent,
                 clearCurrent,
                 updateProduct,
@@ -189,7 +204,8 @@ const AdminState = props => {
                 clearFilter,
                 getUsers,
                 getCurrentCart,
-                clearProducts,
+                getCurrentOrders
+                //clearProducts,
             }}
         >
             {props.children}

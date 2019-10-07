@@ -79,6 +79,7 @@ router.post(
                 pic2,
                 pic3,
                 quantity,
+                status: "in-process",
                 user: req.user.id
             });
 
@@ -96,46 +97,94 @@ router.post(
 // @route    PUT api/orders/:id
 // @desc     Update a product
 // @access   Private
-router.put('/:id', auth.authMiddleware, async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty())
-        return res.status(400).json({errors: errors.array()});
+//auth.authMiddleware,
+// router.put('/:id', async (req, res) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty())
+//         return res.status(400).json({errors: errors.array()});
+//
+//     const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
+//
+//     // Build product object
+//     const productFields = {};
+//     if (model) productFields.name = model;
+//     if (type) productFields.type = type;
+//     if (brand) productFields.brand = brand;
+//     if (specs) productFields.specs = specs;
+//     if (price) productFields.price = price;
+//     if (pic1) productFields.pic1 = pic1;
+//     if (pic2) productFields.pic2 = pic2;
+//     if (pic3) productFields.pic3 = pic3;
+//     if (quantity) productFields.quantity = quantity;
+//
+//     try {
+//         let product = await OrderItem.findById(req.params.id);
+//
+//         if (!product) return res.status(404).json({msg: 'Product not found'});
+//
+//         // Make sure user owns product
+//         if (product.user.toString() !== req.user.id)
+//             return res.status(401).json({msg: 'Not authorized'});
+//
+//         product = await OrderItem.findByIdAndUpdate(
+//             req.params.id,
+//             {$set: productFields},
+//             {new: true}
+//         );
+//
+//         res.json(product);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server error put');
+//     }
+// });
 
-    const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
+// @route    PUT api/orders/:id
+// @desc     Mark an order as shipped
+// @access   Private
+router.put('/:id',
+    [auth.authMiddleware, auth.adminMiddleware],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty())
+            return res.status(400).json({errors: errors.array()});
 
-    // Build product object
-    const productFields = {};
-    if (model) productFields.name = model;
-    if (type) productFields.type = type;
-    if (brand) productFields.brand = brand;
-    if (specs) productFields.specs = specs;
-    if (price) productFields.price = price;
-    if (pic1) productFields.pic1 = pic1;
-    if (pic2) productFields.pic2 = pic2;
-    if (pic3) productFields.pic3 = pic3;
-    if (quantity) productFields.quantity = quantity;
+        const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
 
-    try {
-        let product = await OrderItem.findById(req.params.id);
+        // Build product object
+        const productFields = {};
+        if (model) productFields.name = model;
+        if (type) productFields.type = type;
+        if (brand) productFields.brand = brand;
+        if (specs) productFields.specs = specs;
+        if (price) productFields.price = price;
+        if (pic1) productFields.pic1 = pic1;
+        if (pic2) productFields.pic2 = pic2;
+        if (pic3) productFields.pic3 = pic3;
+        if (quantity) productFields.quantity = quantity;
+        productFields.status = "shipped";
 
-        if (!product) return res.status(404).json({msg: 'Product not found'});
+        try {
+            let product = await OrderItem.findById(req.params.id);
 
-        // Make sure user owns product
-        if (product.user.toString() !== req.user.id)
-            return res.status(401).json({msg: 'Not authorized'});
+            if (!product) return res.status(404).json({msg: 'Product not found'});
 
-        product = await OrderItem.findByIdAndUpdate(
-            req.params.id,
-            {$set: productFields},
-            {new: true}
-        );
+            // Make sure user owns product
+            // if (product.user.toString() !== req.user.id)
+            //     return res.status(401).json({msg: 'Not authorized'});
 
-        res.json(product);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error put');
-    }
-});
+            product = await OrderItem.findByIdAndUpdate(
+                req.params.id,
+                {$set: productFields},
+                {new: true}
+            );
+
+            res.json(product);
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Server error put');
+        }
+    });
 
 // // @route    DELETE api/orders/:id
 // // @desc     Delete an order

@@ -27,7 +27,7 @@ const OrderState = props => {
 
     //Get Products
     const getProducts = async () => {
-        try{
+        try {
             const res = await axios.get('/api/orders');
 
             dispatch({
@@ -37,7 +37,7 @@ const OrderState = props => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.res.msg
             });
         }
     };
@@ -51,10 +51,10 @@ const OrderState = props => {
             }
         };
 
-        try{
+        try {
             const res = await axios.post('/api/orders', product, config);
 
-            dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
+            dispatch({type: ADD_PRODUCT, payload: res.data}); //new added product to our database
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -98,9 +98,9 @@ const OrderState = props => {
 
 
     //Set current
-    // const setCurrent = product => {
-    //     dispatch({ type: SET_CURRENT, payload: product });
-    // };
+    const setCurrent = product => {
+        dispatch({type: SET_CURRENT, payload: product});
+    };
 
     //Clear current
     // const clearCurrent = () => {
@@ -109,7 +109,7 @@ const OrderState = props => {
 
     //Set order total value
     const setTotal = async () => {
-        try{
+        try {
             const res = await axios.get('/api/orders');
 
             dispatch({
@@ -127,7 +127,6 @@ const OrderState = props => {
     //Update product
     // const updateProduct = async product => {
     //
-    //
     //     const config = {
     //         headers: {
     //             'Content-Type': 'application/json'
@@ -135,7 +134,7 @@ const OrderState = props => {
     //     };
     //
     //     try{
-    //         const res = await axios.put(`/api/shopping-cart/${product._id}`, product, config);
+    //         const res = await axios.put(`/api/orders/${product._id}`, product, config);
     //
     //         dispatch({ type: UPDATE_PRODUCT, payload: res.data });
     //     } catch (err) {
@@ -145,6 +144,28 @@ const OrderState = props => {
     //         });
     //     }
     // };
+
+    //Mark as shipped
+    const markAsShipped = async product => {
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+
+        try {
+            const res = await axios.put(`/api/orders/${product._id}`, product, config);
+
+            dispatch({type: UPDATE_PRODUCT, payload: res.data});
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.data
+            });
+        }
+    };
 
     return (
         <OrderContext.Provider
@@ -156,9 +177,10 @@ const OrderState = props => {
                 addProduct,
                 addProducts,
                 //deleteProduct,
-                //setCurrent,
+                setCurrent,
                 //clearCurrent,
                 //updateProduct,
+                markAsShipped,
                 getProducts,
                 //clearCart,
                 setTotal

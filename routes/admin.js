@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {check, validationResult} = require('express-validator/check');
+const {validationResult} = require('express-validator/check');
 const auth = require('../middleware/auth');
 const Product = require('../models/Product');
 const CartItem = require('../models/CartItem');
+const OrderItem = require('../models/OrderItem');
 const User = require('../models/User');
 
 // @route    GET admin/users
@@ -11,7 +12,6 @@ const User = require('../models/User');
 // @access   Public
 
 //add middleware
-//[auth.authMiddleware, auth.adminMiddleware],
 router.get('/users', [auth.authMiddleware, auth.adminMiddleware], async (req, res) => {
     try {
         //this line sorts by user ID, add auth before async to use it
@@ -29,7 +29,7 @@ router.get('/users', [auth.authMiddleware, auth.adminMiddleware], async (req, re
 
 // @route    GET api/admin
 // @desc     Get specific users shopping-cart content
-// @access   Public
+// @access   Private
 router.get('/users/:id', async (req, res) => {
     try {
         //extracts an id from http request
@@ -43,6 +43,30 @@ router.get('/users/:id', async (req, res) => {
         //console.log(req.params.id);
 
         if (!items) return res.status(404).json({msg: 'Users cart is empty'});
+
+        res.json(items);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+
+// @route    GET api/admin
+// @desc     Get specific users orders
+// @access   Private
+router.get('/users/orders/:id', async (req, res) => {
+    try {
+        //extracts an id from http request
+
+        // let product = await Product.findById(req.params.id);
+        // let item = await CartItem.find({ user: req.body._id }).sort({
+        let items = await OrderItem.find({user: req.params.id}).sort({
+            date: -1
+        });
+
+        //console.log(req.params.id);
+
+        if (!items) return res.status(404).json({msg: 'There are no orders'});
 
         res.json(items);
     } catch (err) {
@@ -145,6 +169,7 @@ router.put('/:id', auth.authMiddleware, async (req, res) => {
         res.status(500).send('Server error put');
     }
 });
+
 
 // // @route    DELETE api/products/:id
 // // @desc     Delete a contact

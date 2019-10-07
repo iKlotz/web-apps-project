@@ -113,7 +113,6 @@ const ProductState = props => {
     //Update product
     const updateProduct = async product => {
 
-
         const config = {
             headers: {
                 'Content-Type': 'application/json'

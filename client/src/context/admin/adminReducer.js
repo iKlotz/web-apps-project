@@ -6,6 +6,7 @@ import {
     CLEAR_FILTER,
     USER_ERROR,
     GET_CURRENT_CART,
+    GET_CURRENT_ORDERS,
 } from '../types';
 
 export default (state, action) => {
@@ -14,6 +15,12 @@ export default (state, action) => {
             return{
                 ...state, //state is immutable
                 currentCart: action.payload,
+                loading: false
+            };
+        case GET_CURRENT_ORDERS: //and set current
+            return{
+                ...state, //state is immutable
+                orders: action.payload,
                 loading: false
             };
         case GET_USERS:

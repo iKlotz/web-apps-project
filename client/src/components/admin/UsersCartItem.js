@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 //import ProductContext from '../../context/product/productContext';
 
-const ProductItem = ({ item }) => {
+const UsersCartItem = ({ item }) => {
 
     //const productContext = useContext(ProductContext);
 
@@ -26,8 +26,8 @@ const ProductItem = ({ item }) => {
     );
 };
 
-ProductItem.propTypes = {
+UsersCartItem.propTypes = {
     item:PropTypes.object.isRequired,
 };
-export default ProductItem;
+export default UsersCartItem;
 

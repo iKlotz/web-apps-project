@@ -5,6 +5,7 @@ export const GET_CURRENT_CART = 'GET_CURRENT_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const ADD_ORDERS = 'ADD_ORDERS';
+export const GET_CURRENT_ORDERS = 'GET_CURRENT_ORDERS';
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const SET_CURRENT = 'SET_CURRENT';
