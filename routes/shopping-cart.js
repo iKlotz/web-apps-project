@@ -11,8 +11,8 @@ const User = require('../models/User');
 router.get('/', auth.authMiddleware, async (req, res) => {
     try {
         //this line sorts by user ID, add auth before async to use it
-        const products = await CartItem.find({ user: req.user.id }).sort({
-        // const products = await CartItem.find().sort({
+        const products = await CartItem.find({user: req.user.id}).sort({
+            // const products = await CartItem.find().sort({
             date: -1
         });
 
@@ -165,7 +165,7 @@ router.delete('/:id', auth.authMiddleware, async (req, res) => {
 router.delete('/', auth.authMiddleware, async (req, res) => {
     try {
 
-        let products = await CartItem.find({ user: req.user.id });
+        let products = await CartItem.find({user: req.user.id});
 
         if (!products) return res.status(404).json({msg: 'Products not found'});
 

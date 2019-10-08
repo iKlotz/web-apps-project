@@ -7,7 +7,6 @@ import {
     GET_PRODUCT_AND_SET_CURRENT,
     GET_PRODUCTS,
     ADD_PRODUCT,
-    ADD_PRODUCT_TO_CART,
     DELETE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -29,7 +28,7 @@ const ProductState = props => {
 
     //Get Products
     const getProducts = async () => {
-        try{
+        try {
             const res = await axios.get('/api/products');
 
             dispatch({
@@ -46,10 +45,10 @@ const ProductState = props => {
 
     const getProductAndSetCurrent = async id => {
 
-        try{
+        try {
             const res = await axios.get(`/api/products/${id}`);
 
-            dispatch({ type: GET_PRODUCT_AND_SET_CURRENT, payload: res.data });
+            dispatch({type: GET_PRODUCT_AND_SET_CURRENT, payload: res.data});
         } catch (err) {
             console.log(err);
             dispatch({
@@ -67,10 +66,10 @@ const ProductState = props => {
             }
         };
 
-        try{
+        try {
             const res = await axios.post('/api/products', product, config);
 
-            dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
+            dispatch({type: ADD_PRODUCT, payload: res.data}); //new added product to our database
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -82,10 +81,10 @@ const ProductState = props => {
     //Delete product
     const deleteProduct = async id => {
 
-        try{
+        try {
             await axios.delete(`/api/products/${id}`);
 
-            dispatch({ type: DELETE_PRODUCT, payload: id });
+            dispatch({type: DELETE_PRODUCT, payload: id});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -96,18 +95,18 @@ const ProductState = props => {
 
     //Clear products
     const clearProducts = () => {
-        dispatch({ type: CLEAR_PRODUCTS });
+        dispatch({type: CLEAR_PRODUCTS});
     };
 
 
     //Set current
     const setCurrent = product => {
-        dispatch({ type: SET_CURRENT, payload: product });
+        dispatch({type: SET_CURRENT, payload: product});
     };
 
     //Clear current
     const clearCurrent = () => {
-        dispatch({ type: CLEAR_CURRENT });
+        dispatch({type: CLEAR_CURRENT});
     };
 
     //Update product
@@ -119,10 +118,10 @@ const ProductState = props => {
             }
         };
 
-        try{
+        try {
             const res = await axios.put(`/api/products/${product._id}`, product, config);
 
-            dispatch({ type: UPDATE_PRODUCT, payload: res.data });
+            dispatch({type: UPDATE_PRODUCT, payload: res.data});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -133,14 +132,13 @@ const ProductState = props => {
 
     //Filter
     const filterProducts = text => {
-        dispatch({ type: FILTER_PRODUCTS, payload: text });
+        dispatch({type: FILTER_PRODUCTS, payload: text});
     };
 
     //Clear Filter
     const clearFilter = () => {
-        dispatch({ type: CLEAR_FILTER }); //set back to default which is null
+        dispatch({type: CLEAR_FILTER}); //set back to default which is null
     };
-
 
 
     return (

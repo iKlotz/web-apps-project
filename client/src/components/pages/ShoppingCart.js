@@ -9,9 +9,7 @@ const ShoppingCart = () => {
     const authContext = useContext(AuthContext);
     const cartContext = useContext(CartContext);
     const orderContext = useContext(OrderContext);
-
     const {products, cartTotal, setTotal, getProducts, loading, clearCart} = cartContext;
-
     const {addProducts} = orderContext;
 
     useEffect(() => {

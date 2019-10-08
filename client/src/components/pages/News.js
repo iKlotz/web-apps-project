@@ -4,7 +4,7 @@ import News from "../news/News";
 const Store = () => {
     return (
         <div>
-            <News />
+            <News/>
         </div>
     );
 };

@@ -82,69 +82,6 @@ const AdminState = props => {
         }
     };
 
-
-    //Add product
-    // const addProduct = async product => {
-    //     const config = {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     };
-    //
-    //     try{
-    //         const res = await axios.post('/api/products', product, config);
-    //
-    //         dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
-    //     } catch (err) {
-    //         dispatch({
-    //             type: PRODUCT_ERROR,
-    //             payload: err.response.msg
-    //         });
-    //     }
-    // };
-
-    //Add product
-    // const addOrders = async orders => {
-    //     const config = {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     };
-    //
-    //     try{
-    //         const res = await axios.post('/api/admin/orders', orders, config);
-    //
-    //         dispatch({ type: ADD_ORDERS, payload: res.data });
-    //     } catch (err) {
-    //         dispatch({
-    //             type: PRODUCT_ERROR,
-    //             payload: err.response.msg
-    //         });
-    //     }
-    // };
-
-
-    //Delete product
-    // const deleteProduct = async id => {
-    //
-    //     try{
-    //         await axios.delete(`/api/products/${id}`);
-    //
-    //         dispatch({ type: DELETE_PRODUCT, payload: id });
-    //     } catch (err) {
-    //         dispatch({
-    //             type: PRODUCT_ERROR,
-    //             payload: err.response.msg
-    //         });
-    //     }
-    // };
-
-    //Clear products
-    // const clearProducts = () => {
-    //     dispatch({ type: CLEAR_PRODUCTS });
-    // };
-
-
     //Set current
     const setCurrent = user => {
         dispatch({type: SET_CURRENT, payload: user});
@@ -185,7 +122,6 @@ const AdminState = props => {
     const clearFilter = () => {
         dispatch({type: CLEAR_FILTER}); //set back to default which is null
     };
-
 
     return (
         <AdminContext.Provider

@@ -7,7 +7,7 @@ const Checkout = () => {
     const authContext = useContext(AuthContext);
     const cartContext = useContext(CartContext);
 
-    const {products, cartTotal, setTotal, getProducts, loading} = cartContext;
+    const {setTotal, getProducts} = cartContext;
 
 
     useEffect(() => {

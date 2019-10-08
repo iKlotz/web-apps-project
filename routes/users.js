@@ -3,8 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require('express-validator/check');
-
+const {check, validationResult} = require('express-validator/check');
 const User = require('../models/User');
 
 // @route    POST api/users
@@ -23,21 +22,21 @@ router.post(
         check(
             'password',
             'Please enter a password with 6 or more characters'
-        ).isLength({ min: 6 })
+        ).isLength({min: 6})
     ],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({errors: errors.array()});
         }
 
-        const { firstname, lastname, email, password, remember_me } = req.body;
+        const {firstname, lastname, email, password, remember_me} = req.body;
 
         try {
-            let user = await User.findOne({ email });
+            let user = await User.findOne({email});
 
             if (user) {
-                return res.status(400).json({ msg: 'User already exists' });
+                return res.status(400).json({msg: 'User already exists'});
             }
 
             user = new User({
@@ -55,27 +54,27 @@ router.post(
 
             const payload = {
                 user: {
-                    id: user.id //_id ?
+                    id: user.id
                 }
             };
 
-            if(remember_me) {
+            if (remember_me) {
                 jwt.sign(
                     payload,
                     config.get('jwtSecret'),
                     (err, token) => {
                         if (err) throw err;
-                        res.json({ token });
+                        res.json({token});
                     }
                 );
             } else {
                 jwt.sign(
                     payload,
                     config.get('jwtSecret'),
-                    { expiresIn: 360 }, //set remember me
+                    {expiresIn: 360}, //set remember me
                     (err, token) => {
                         if (err) throw err;
-                        res.json({ token });
+                        res.json({token});
                     }
                 );
             }

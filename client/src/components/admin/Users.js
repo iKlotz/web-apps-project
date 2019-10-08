@@ -5,18 +5,16 @@ import Spinner from '../layout/Spinner';
 
 
 const Users = () => {
-
     const adminContext = useContext(AdminContext);
-
     const {users, filtered, getUsers, loading} = adminContext;
 
     useEffect(() => {
         getUsers();
         // eslint-disable-next-line
-    },[]);
+    }, []);
 
     if (users !== null && users.length === 0 && !loading) {
-        return <h4>     No customers    </h4>
+        return <h4> No customers </h4>
     }
 
     return (

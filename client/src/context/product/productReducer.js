@@ -16,13 +16,13 @@ import {
 export default (state, action) => {
     switch (action.type) {
         case GET_PRODUCT_AND_SET_CURRENT: //and set current
-            return{
+            return {
                 ...state, //state is immutable
                 current: action.payload,
                 loading: false
             };
         case GET_PRODUCTS:
-            return{
+            return {
                 ...state, //state is immutable
                 products: action.payload,
                 loading: false
@@ -40,7 +40,7 @@ export default (state, action) => {
                 loading: false
             };
         case UPDATE_PRODUCT:
-            return{
+            return {
                 ...state,
                 products: state.products.map(product =>
                     product._id === action.payload._id ? action.payload : product),
@@ -56,7 +56,7 @@ export default (state, action) => {
                 loading: false
             };
         case CLEAR_PRODUCTS:
-            return{
+            return {
                 ...state,
                 products: null,
                 filtered: null,
@@ -73,7 +73,7 @@ export default (state, action) => {
                 current: null
             };
         case FILTER_PRODUCTS:
-            return{
+            return {
                 ...state,
                 filtered: state.products.filter(product => {
                     const regex = new RegExp(`${action.payload}`, 'gi'); //g-global i-case insensitive
@@ -90,7 +90,6 @@ export default (state, action) => {
                 ...state,
                 error: action.payload //which is an error message
             };
-
         default:
             return state;
     }

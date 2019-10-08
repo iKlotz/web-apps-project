@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import ProductContext from '../../context/product/productContext';
 
-const UsersCartItem = ({ item }) => {
-
-    //const productContext = useContext(ProductContext);
-
-    //const { deleteProduct, setCurrent, clearCurrent } = productContext;
-
-    const { model, price, pic1, quantity } = item;
+const UsersCartItem = ({item}) => {
+    const {model, price, pic1, quantity} = item;
 
     return (
         <div className="card">
@@ -27,7 +21,7 @@ const UsersCartItem = ({ item }) => {
 };
 
 UsersCartItem.propTypes = {
-    item:PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
 };
 export default UsersCartItem;
 

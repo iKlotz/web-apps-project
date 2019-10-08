@@ -15,11 +15,11 @@ const ManageProducts = () => {
     return (
         <div className="grid-2">
             <div>
-                <ProductForm />
+                <ProductForm/>
             </div>
             <div>
-                <ProductFilter />
-                <ProductsList />
+                <ProductFilter/>
+                <ProductsList/>
             </div>
         </div>
     );

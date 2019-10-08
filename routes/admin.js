@@ -32,15 +32,9 @@ router.get('/users', [auth.authMiddleware, auth.adminMiddleware], async (req, re
 // @access   Private
 router.get('/users/:id', async (req, res) => {
     try {
-        //extracts an id from http request
-
-        // let product = await Product.findById(req.params.id);
-        // let item = await CartItem.find({ user: req.body._id }).sort({
         let items = await CartItem.find({user: req.params.id}).sort({
             date: -1
         });
-
-        //console.log(req.params.id);
 
         if (!items) return res.status(404).json({msg: 'Users cart is empty'});
 
@@ -56,15 +50,9 @@ router.get('/users/:id', async (req, res) => {
 // @access   Private
 router.get('/users/orders/:id', async (req, res) => {
     try {
-        //extracts an id from http request
-
-        // let product = await Product.findById(req.params.id);
-        // let item = await CartItem.find({ user: req.body._id }).sort({
         let items = await OrderItem.find({user: req.params.id}).sort({
             date: -1
         });
-
-        //console.log(req.params.id);
 
         if (!items) return res.status(404).json({msg: 'There are no orders'});
 
@@ -75,62 +63,10 @@ router.get('/users/orders/:id', async (req, res) => {
     }
 });
 
-
-// @route    POST api/admin/orders
-// @desc     Add orders
-// @access   Private
-// router.post(
-//     '/',
-//     [
-//         auth.adminMiddleware,
-//         [
-//             check('model', 'Model is required')
-//                 .not()
-//                 .isEmpty(),
-//             check('type', 'Type must be provided').isIn([
-//                 'Acoustic',
-//                 'Electric Guitar'
-//             ])
-//         ]
-//     ],
-//     async (req, res) => {
-//         const errors = validationResult(req);
-//
-//         if (!errors.isEmpty()) {
-//             return res.status(400).json({errors: errors.array()});
-//         }
-//
-//
-//         const {model, type, brand, specs, price, pic1, pic2, pic3, quantity} = req.body;
-//
-//         try {
-//             const newProduct = new Product({
-//                 model,
-//                 brand,
-//                 specs,
-//                 price,
-//                 type,
-//                 pic1,
-//                 pic2,
-//                 pic3,
-//                 quantity,
-//                 user: req.user.id
-//             });
-//
-//             const product = await newProduct.save();
-//
-//             res.json(product);
-//         } catch (err) {
-//             console.error(err.message);
-//             res.status(500).send('Server Error');
-//         }
-//     }
-// );
-
 // @route    PUT api/products/:id
 // @desc     Update a product
 // @access   Private
-router.put('/:id', auth.authMiddleware, async (req, res) => {
+router.put('/:id', [auth.authMiddleware, auth.adminMiddleware], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
         return res.status(400).json({errors: errors.array()});
@@ -154,8 +90,8 @@ router.put('/:id', auth.authMiddleware, async (req, res) => {
         if (!product) return res.status(404).json({msg: 'Product not found'});
 
         // Make sure user owns product
-        if (product.user.toString() !== req.user.id)
-            return res.status(401).json({msg: 'Not authorized'});
+        // if (product.user.toString() !== req.user.id)
+        //     return res.status(401).json({msg: 'Not authorized'});
 
         product = await Product.findByIdAndUpdate(
             req.params.id,
@@ -174,17 +110,17 @@ router.put('/:id', auth.authMiddleware, async (req, res) => {
 // // @route    DELETE api/products/:id
 // // @desc     Delete a contact
 // // @access   Private
-router.delete('/:id', auth.adminMiddleware, async (req, res) => {
+router.delete('/:id', [auth.adminMiddleware, auth.adminMiddleware], async (req, res) => {
     try {
         let product = await Product.findById(req.params.id);
 
         if (!product) return res.status(404).json({msg: 'Product not found'});
 
         // Make sure user owns product
-        if (product.user.toString() !== req.user.id)
-            return res.status(401).json({msg: 'Not authorized'});
-
-        await Product.findByIdAndRemove(req.params.id);
+        // if (product.user.toString() !== req.user.id)
+        //     return res.status(401).json({msg: 'Not authorized'});
+        //
+        // await Product.findByIdAndRemove(req.params.id);
 
         res.json({msg: 'Product removed'});
     } catch (err) {
@@ -193,23 +129,3 @@ router.delete('/:id', auth.adminMiddleware, async (req, res) => {
     }
 });
 module.exports = router;
-
-// @route    GET api/shopping-cart
-// @desc     Get all products in users shopping cart
-// @access   Private
-// router.get('/manage-products', auth.adminMiddleware, async (req, res) => {
-//     try {
-//         //this line sorts by user ID, add auth before async to use it
-//         const products = await CartItem.find({ }).sort({
-//             // const products = await CartItem.find().sort({
-//             date: -1
-//         });
-//
-//         // _.groupBy(products, 'username')
-//         res.json(products);
-//     } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send('Server Error');
-//     }
-// });
-

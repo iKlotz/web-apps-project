@@ -3,7 +3,6 @@ import ProductContext from '../../context/product/productContext';
 
 const ProductForm = () => {
     const productContext = useContext(ProductContext);
-
     const {addProduct, clearCurrent, current, updateProduct} = productContext;
 
     useEffect(() => {
@@ -33,7 +32,7 @@ const ProductForm = () => {
         pic2: '',
         pic3: '',
         quantity: '',
-        specs:''
+        specs: ''
     });
 
     const {model, brand, price, type, pic1, pic2, pic3, specs, quantity} = product;
@@ -44,7 +43,7 @@ const ProductForm = () => {
     const onSubmit = e => {
         e.preventDefault();
 
-        if(current === null){
+        if (current === null) {
             addProduct(product); //product is our state
         } else {
             updateProduct(product);
@@ -69,7 +68,7 @@ const ProductForm = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <h2 className="primary">{current === null ? 'Add Product' : 'Edit Product' }</h2>
+            <h2 className="primary">{current === null ? 'Add Product' : 'Edit Product'}</h2>
             <input
                 type="text"
                 placeholder="Model"
@@ -146,7 +145,7 @@ const ProductForm = () => {
             <div>
                 <input
                     type="submit"
-                    value={current === null ? 'Add Product' : 'Update Product' }
+                    value={current === null ? 'Add Product' : 'Update Product'}
                     className="btn btn-dark btn-block"/>
             </div>
             {current && <div>

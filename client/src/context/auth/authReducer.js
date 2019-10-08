@@ -21,7 +21,7 @@ export default (state, action) => {
             };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-            localStorage.setItem('token', action.payload.token); //cookie (well kind of)
+            localStorage.setItem('token', action.payload.token); //token (cookie, well kind of)
             return {
                 ...state,
                 ...action.payload,

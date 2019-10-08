@@ -5,9 +5,7 @@ import AuthContext from '../../context/auth/authContext';
 const Register = props => {
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
-
     const {setAlert} = alertContext;
-
     const {register, error, clearErrors, isAuthenticated} = authContext;
 
     useEffect(() => {
@@ -36,7 +34,7 @@ const Register = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        if (firstname === '' || lastname === ''|| email === '' || password === '') {
+        if (firstname === '' || lastname === '' || email === '' || password === '') {
             setAlert('Please enter all fields', 'danger');
         } else if (password !== password2) {
             setAlert('Passwords do not match', 'danger');
@@ -57,7 +55,7 @@ const Register = props => {
                 Account Register
             </h1>
             <form onSubmit={onSubmit}>
-                <div >
+                <div>
                     <label htmlFor="firstname">First Name:</label>
                     <input type="text" name="firstname" value={firstname} onChange={onChange} required/>
                 </div>
@@ -82,13 +80,13 @@ const Register = props => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password2">Confirm Password:</label>
-                        <input type="password"
-                               name="password2"
-                               value={password2}
-                               onChange={onChange}
-                               required
-                               minLength="6"
-                        />
+                    <input type="password"
+                           name="password2"
+                           value={password2}
+                           onChange={onChange}
+                           required
+                           minLength="6"
+                    />
                 </div>
                 <input type="submit" value="Register" className="btn btn-secondary btn-block"/>
             </form>

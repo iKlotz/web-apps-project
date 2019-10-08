@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const auth = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require('express-validator/check');
+const {check, validationResult} = require('express-validator/check');
 const User = require('../models/User');
 
 // @route    GET api/auth
@@ -32,22 +32,22 @@ router.post(
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({errors: errors.array()});
         }
 
-        const { email, password, remember_me } = req.body;
+        const {email, password, remember_me} = req.body;
 
         try {
-            let user = await User.findOne({ email });
+            let user = await User.findOne({email});
 
             if (!user) {
-                return res.status(400).json({ msg: 'Invalid Credentials' });
+                return res.status(400).json({msg: 'Invalid Credentials'});
             }
 
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (!isMatch) {
-                return res.status(400).json({ msg: 'Invalid Credentials' });
+                return res.status(400).json({msg: 'Invalid Credentials'});
             }
 
             const payload = {
@@ -57,23 +57,23 @@ router.post(
                 }
             };
 
-            if(remember_me) {
+            if (remember_me) {
                 jwt.sign(
                     payload,
                     config.get('jwtSecret'),
                     (err, token) => {
                         if (err) throw err;
-                        res.json({ token });
+                        res.json({token});
                     }
                 );
             } else {
                 jwt.sign(
                     payload,
                     config.get('jwtSecret'),
-                    { expiresIn: 360 }, //set remember me
+                    {expiresIn: 360}, //set remember me
                     (err, token) => {
                         if (err) throw err;
-                        res.json({ token });
+                        res.json({token});
                     }
                 );
             }

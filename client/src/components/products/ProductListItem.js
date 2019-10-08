@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import ProductContext from '../../context/product/productContext';
 
-const ProductListItem = ({ product }) => {
+const ProductListItem = ({product}) => {
     const productContext = useContext(ProductContext);
-
-    const { deleteProduct, setCurrent, clearCurrent } = productContext;
-
-    const { _id, model, brand, type, price, pic1, pic2, pic3, specs, quantity } = product;
+    const {deleteProduct, setCurrent, clearCurrent} = productContext;
+    const {_id, model, brand, type, price, pic1, pic2, pic3, specs, quantity} = product;
 
     const onDelete = () => {
         deleteProduct(_id);

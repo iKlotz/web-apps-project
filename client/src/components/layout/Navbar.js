@@ -7,7 +7,6 @@ import ProductContext from '../../context/product/productContext';
 const Navbar = ({title, icon}) => {
     const authContext = useContext(AuthContext);
     const productContext = useContext(ProductContext);
-
     const {isAuthenticated, isAdmin, logout, user} = authContext;
     const {clearProducts, getProducts} = productContext;
 
@@ -20,7 +19,6 @@ const Navbar = ({title, icon}) => {
         logout();
         clearProducts();
     };
-
 
     const authLinks = (
         <Fragment>
@@ -121,9 +119,9 @@ const Navbar = ({title, icon}) => {
 
     const leftLinks = () => {
         let links;
-        if(isAdmin){
+        if (isAdmin) {
             links = adminLinks;
-        } else if(isAuthenticated){
+        } else if (isAuthenticated) {
             links = authLinks;
         } else {
             links = guestLinks;
@@ -133,9 +131,9 @@ const Navbar = ({title, icon}) => {
 
     const rightLinks = () => {
         let links;
-        if(isAdmin){
+        if (isAdmin) {
             links = adminLinksRight;
-        } else if(isAuthenticated){
+        } else if (isAuthenticated) {
             links = authLinksRight;
         } else {
             links = guestLinksRight;
@@ -158,11 +156,9 @@ const Navbar = ({title, icon}) => {
 
             <div className="collapse navbar-collapse my-search-box" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                    {/*{isAuthenticated ? authLinks : guestLinks}*/}
                     {leftLinks()}
                 </ul>
                 <ul className="form-inline my-2 my-lg-0">
-                    {/*{isAuthenticated ? authLinksRight : guestLinksRight}*/}
                     {rightLinks()}
                 </ul>
             </div>

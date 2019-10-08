@@ -27,7 +27,7 @@ const UsersOrders = () => {
             {orders !== null && !loading ? (
                 <div className='row'>
                     {orders.map(item => (
-                        <div className='col-md-4'>
+                        <div className='col-md-4' key={item._id} >
                             <UsersOrdersItem key={item._id} item={item}/>
                         </div>
                     ))}

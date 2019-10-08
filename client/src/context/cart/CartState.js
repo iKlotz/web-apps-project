@@ -27,7 +27,7 @@ const CartState = props => {
 
     //Get Products
     const getProducts = async () => {
-        try{
+        try {
             const res = await axios.get('/api/shopping-cart');
 
             dispatch({
@@ -42,7 +42,6 @@ const CartState = props => {
         }
     };
 
-
     //Add product
     const addProduct = async product => {
         const config = {
@@ -51,10 +50,10 @@ const CartState = props => {
             }
         };
 
-        try{
+        try {
             const res = await axios.post('/api/shopping-cart', product, config);
 
-            dispatch({ type: ADD_PRODUCT, payload: res.data }); //new added product to our database
+            dispatch({type: ADD_PRODUCT, payload: res.data}); //new added product to our database
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -66,10 +65,10 @@ const CartState = props => {
     //Delete product
     const deleteProduct = async id => {
 
-        try{
+        try {
             await axios.delete(`/api/shopping-cart/${id}`);
 
-            dispatch({ type: DELETE_PRODUCT, payload: id });
+            dispatch({type: DELETE_PRODUCT, payload: id});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -80,9 +79,9 @@ const CartState = props => {
 
     //Clear cart
     const clearCart = async () => {
-        try{
+        try {
             await axios.delete('/api/shopping-cart/');
-            dispatch({ type: CLEAR_CART});
+            dispatch({type: CLEAR_CART});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
@@ -92,20 +91,19 @@ const CartState = props => {
 
     };
 
-
     //Set current
     const setCurrent = product => {
-        dispatch({ type: SET_CURRENT, payload: product });
+        dispatch({type: SET_CURRENT, payload: product});
     };
 
     //Clear current
     const clearCurrent = () => {
-        dispatch({ type: CLEAR_CURRENT });
+        dispatch({type: CLEAR_CURRENT});
     };
 
     //Set carts total value
     const setTotal = async () => {
-        try{
+        try {
             const res = await axios.get('/api/shopping-cart');
 
             dispatch({
@@ -130,10 +128,10 @@ const CartState = props => {
             }
         };
 
-        try{
+        try {
             const res = await axios.put(`/api/shopping-cart/${product._id}`, product, config);
 
-            dispatch({ type: UPDATE_PRODUCT, payload: res.data });
+            dispatch({type: UPDATE_PRODUCT, payload: res.data});
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,

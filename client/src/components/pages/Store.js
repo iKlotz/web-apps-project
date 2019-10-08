@@ -5,8 +5,8 @@ import ProductFilter from '../products/ProductFilter';
 const Store = () => {
     return (
         <div>
-            <ProductFilter />
-            <Products />
+            <ProductFilter/>
+            <Products/>
         </div>
     );
 };

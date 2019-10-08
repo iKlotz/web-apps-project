@@ -13,7 +13,7 @@ import {
 export default (state, action) => {
     switch (action.type) {
         case GET_PRODUCTS:
-            return{
+            return {
                 ...state, //state is immutable
                 products: action.payload,
                 loading: false
@@ -25,7 +25,7 @@ export default (state, action) => {
                 loading: false
             };
         case UPDATE_PRODUCT:
-            return{
+            return {
                 ...state,
                 products: state.products.map(product =>
                     product._id === action.payload._id ? action.payload : product),
@@ -41,7 +41,7 @@ export default (state, action) => {
                 loading: false
             };
         case CLEAR_CART:
-            return{
+            return {
                 ...state,
                 products: null,
                 current: null
@@ -57,20 +57,18 @@ export default (state, action) => {
                 ...state,
                 current: null
             };
-
         case SET_TOTAL:
             return {
                 ...state,
                 //products: action.payload,
                 cartTotal: action.payload.reduce((acc, currVal) =>
-                    acc + (currVal.price * currVal.quantity), 0)};
-
+                    acc + (currVal.price * currVal.quantity), 0)
+            };
         case PRODUCT_ERROR:
             return {
                 ...state,
                 error: action.payload //which is an error message
             };
-
         default:
             return state;
     }

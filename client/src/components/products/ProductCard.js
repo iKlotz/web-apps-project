@@ -4,15 +4,16 @@ import CartContext from '../../context/cart/cartContext';
 import AuthContext from '../../context/auth/authContext';
 import {Link} from "react-router-dom";
 import Spinner from '../../components/layout/Spinner';
+
 const ProductCard = () => {
 
     const productContext = useContext(ProductContext); //init context
     const cartContext = useContext(CartContext);
     const authContext = useContext(AuthContext);
-
     const {current, getProductAndSetCurrent, loading} = productContext; //pulling out products from out context
     const {addProduct} = cartContext;
     const {isAuthenticated} = authContext;
+    const {model, brand, specs, price, type, pic1, pic2, pic3} = current;
 
     useEffect(() => {
         const id = window.location.pathname.split("/").pop(); //get id from the URL
@@ -25,9 +26,6 @@ const ProductCard = () => {
             <Spinner/>
         </div>
     }
-
-    const {model, brand, specs, price, type, pic1, pic2, pic3} = current;
-
 
     return <Fragment>
         <div>
@@ -68,7 +66,7 @@ const ProductCard = () => {
 
                             <div className="">
                                 {/*<button type="button" className="btn btn-dark"  onClick={() => addProduct(current)}>*/}
-                                    {/*<i className="far fa-heart"></i>*/}
+                                {/*<i className="far fa-heart"></i>*/}
                                 {/*</button>*/}
 
                                 <button
@@ -116,6 +114,5 @@ const ProductCard = () => {
         </div>
     </Fragment>;
 };
-
 
 export default ProductCard;

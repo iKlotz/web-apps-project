@@ -4,13 +4,9 @@ import {Link} from 'react-router-dom';
 import AdminContext from '../../context/admin/adminContext';
 
 const UserItem = ({user}) => {
-
     const adminContext = useContext(AdminContext);
-
     const {setCurrent} = adminContext;
-
     const {_id, firstname, lastname} = user;
-
     const setUsersCart = (user) => {
         setCurrent(user);
     };
@@ -39,5 +35,6 @@ const UserItem = ({user}) => {
 UserItem.propTypes = {
     user: PropTypes.object.isRequired,
 };
+
 export default UserItem;
 

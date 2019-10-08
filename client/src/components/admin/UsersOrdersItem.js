@@ -10,7 +10,7 @@ const UsersOrderItem = ({ item }) => {
 
     const { model, price, pic1, quantity, status, date } = item;
 
-    useEffect(() => {//basically fills in our products array, sending the request to the DB
+    useEffect(() => {
 
         setCurrent(item);
         // eslint-disable-next-line

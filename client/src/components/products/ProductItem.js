@@ -1,15 +1,12 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import ProductContext from '../../context/product/productContext';
 
-const ProductItem = ({ product }) => {
-
+const ProductItem = ({product}) => {
     const productContext = useContext(ProductContext);
-
-    const { setCurrent } = productContext;
-
-    const { _id, model, pic1 } = product;
+    const {setCurrent} = productContext;
+    const {_id, model, pic1} = product;
 
     return (
         <div className="card">
@@ -31,10 +28,10 @@ const ProductItem = ({ product }) => {
             </div>
         </div>
     );
-}
+};
 
 ProductItem.propTypes = {
-    product:PropTypes.object.isRequired,
+    product: PropTypes.object.isRequired,
 };
 export default ProductItem;
 

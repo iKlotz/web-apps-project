@@ -5,7 +5,6 @@ const Ddos = require('ddos');
 const app = express();
 const ddos = new Ddos;
 
-
 // Connect Database
 connectDB();
 

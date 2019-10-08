@@ -2,13 +2,12 @@ import React from 'react';
 import Store from '../../images/Store.jpg';
 import {Link} from "react-router-dom";
 
-
 const About = () => {
     return (
         <div className="container card" style={{maxWidth: "85%"}}>
             <h2 className="card-title">We are guitar world!</h2>
             <img src={Store} className="card-img-top" alt="..."/>
-            <div className="row" >
+            <div className="row">
                 <div className="col-md-12">
                     <div className="card-body">
                         <p className="card-text">Located in the heart of the San Fernando Valley, Norman’s Rare Guitars

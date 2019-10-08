@@ -4,17 +4,17 @@ import UserFilter from "../admin/UserFilter";
 import AuthContext from "../../context/auth/authContext";
 
 const Admin = () => {
-
     const authContext = useContext(AuthContext);
 
     useEffect(() => {
         authContext.loadUser();
         //eslint-disable-next-line
     }, []);
+
     return (
         <div>
-            <UserFilter />
-            <Users />
+            <UserFilter/>
+            <Users/>
         </div>
     );
 };

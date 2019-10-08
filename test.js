@@ -61,7 +61,7 @@ const addProduct = async (token) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-            'x-auth-token':  token.token
+            'x-auth-token': token.token
         }
     };
 
@@ -123,7 +123,7 @@ const addProductToStore = async token => {
 
     const newToken = token;
 
-    try{
+    try {
         const res = await axios.post('http://localhost:5000/api/products', product, config);
         console.log("Product was successfully added");
         //console.log(res.data._id);
@@ -152,13 +152,13 @@ const updateProduct = async tokenAndProduct => {
 
     const newToken = tokenAndProduct[0];
 
-    try{
+    try {
         const res = await axios.put(`http://localhost:5000/api/products/${tokenAndProduct[1]._id}`, newProduct, config);
 
         console.log('Product was successfully updated');
         return [newToken, res.data._id];
     } catch (err) {
-       console.error(err);
+        console.error(err);
     }
 };
 
@@ -172,15 +172,14 @@ const deleteProduct = async tokenAndId => {
         }
     };
 
-    try{
+    try {
         await axios.delete(`http://localhost:5000/api/products/${tokenAndId[1]}`, config);
         //dispatch({ type: DELETE_PRODUCT, payload: id });
         console.log("Product was successfully deleted");
-    } catch (err){
+    } catch (err) {
         console.error(err);
     }
 };
-
 
 
 /*
@@ -188,23 +187,23 @@ register user, and add an item to his/her shopping cart
  */
 
 const registrationTest = () => register(formData)
-    .then((token)=> addProduct(token))
-    .then((product)=> {
-        if(product.brand === brand && product.model === model){
-         console.log("Registration test ended.");
-         console.log("**************************************\n");
+    .then((token) => addProduct(token))
+    .then((product) => {
+        if (product.brand === brand && product.model === model) {
+            console.log("Registration test ended.");
+            console.log("**************************************\n");
         }
     })
-    .catch((err)=> console.log(err));
+    .catch((err) => console.log(err));
 
 
 //Test description: laoad admin user, add product, update it, remove it, be happy.
 const adminTest = () => loadAdmin()
     .then((token) => addProductToStore(token))
     .then((tokenAndProduct) => updateProduct(tokenAndProduct))
-    .then((tokenAndId)=>deleteProduct(tokenAndId))
+    .then((tokenAndId) => deleteProduct(tokenAndId))
     //returns a token and an object that was added to the store
-    .then(()=> console.log("Test ended."));
+    .then(() => console.log("Test ended."));
 
 registrationTest().then(adminTest);
 

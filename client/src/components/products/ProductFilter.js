@@ -4,7 +4,6 @@ import ProductContext from '../../context/product/productContext';
 const ProductFilter = () => {
     const productContext = useContext(ProductContext);
     const text = useRef('');
-
     const {filterProducts, clearFilter, filtered } = productContext;
 
     useEffect(() => {
